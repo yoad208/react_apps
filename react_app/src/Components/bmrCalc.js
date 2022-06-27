@@ -5,7 +5,7 @@ class BmrCalc extends Component {
     Weight = React.createRef()
     Height = React.createRef()
     Age = React.createRef()
-    result = 0
+    result = this.state.A + this.state.H + this.state.W
 
 
     calcBmr = () => {
@@ -14,8 +14,13 @@ class BmrCalc extends Component {
            H: this.Height.current.value,
            A: this.Age.current.value
        });
-       this.result = parseInt(this.state.W) + parseInt(this.state.H) + parseInt(this.state.A)
-       this.props.getResult(this.result)
+        console.log(
+            this.Weight.current.value,
+            this.Height.current.value,
+            this.Age.current.value
+        )
+        var result = parseInt()this.state.W) +
+       this.props.getResult(this.state.A + this.state.H + this.state.W)
     }
 
     render() {

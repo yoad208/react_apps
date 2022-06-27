@@ -15,6 +15,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
+                <h4>BMR CALCULATOR</h4>
                 <BmrCalc getResult = {this.getResult}/>
                 <h4>{this.state.result}</h4>
             </div>
