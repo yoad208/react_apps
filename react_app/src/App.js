@@ -1,27 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import './Components/bmrCalc';
+import BmrCalc from "./Components/bmrCalc";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Component} from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <button className="btn btn-success">click</button>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+    state = {result: null}
+
+    getResult = (_val) => {
+        this.setState({result: _val})
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <BmrCalc getResult = {this.getResult}/>
+                <h4>{this.state.result}</h4>
+            </div>
+        )
+    };
 }
 
 export default App;
