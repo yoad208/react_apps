@@ -2,6 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./Components/header";
 import Albums from "./Components/albums";
 import {useState} from "react";
+import Search from "./Components/Search";
+import Navigation from "./Components/navigation";
 
 
 const App = (props) => {
@@ -15,7 +17,13 @@ const App = (props) => {
     return (
         <div className="App">
             <div className="m-auto ">
-                <Header getUserSearch={getSearch}/>
+
+                <Header>
+                    <Search getUserSearch={getSearch}>
+                        <Navigation/>
+                    </Search>
+                </Header>
+
                 <Albums userSearch={data}/>
             </div>
         </div>
