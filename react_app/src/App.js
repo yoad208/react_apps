@@ -1,12 +1,20 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from "./Components/header";
+import Navigation from "./Components/navigation";
+import Search from "./Components/search";
+import Logo from "./Components/logo";
 
 
 const App = () => {
 
         return (
-            <div className="App text-center border border-2 w-50 m-auto">
-
+            <div className="App">
+                <Header>
+                    <Logo/>
+                    <Navigation/>
+                    <Search/>
+                </Header>
             </div>
         )
 }
