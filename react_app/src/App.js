@@ -8,14 +8,21 @@ import MovieCard from "./Components/movie_card";
 
 
 const App = () => {
+    const [search, setSearch] = useState('')
+
+    const getUserSearch = (_val) => {
+        setSearch(_val)
+    }
+
     return (
         <div className="App bg-warning">
             <Header>
                 <Logo/>
                 <Navigation/>
-                <Search/>
+                <Search getUserSearch={getUserSearch}/>
             </Header>
-            <MovieCard/>
+
+            <MovieCard userSearch={search}/>
         </div>
     )
 }

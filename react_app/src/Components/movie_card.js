@@ -9,7 +9,7 @@ function MovieCard(props) {
     }, [])
 
     const getDataFromApi = async () => {
-        let URL = 'https://www.omdbapi.com/?s=red&apikey=ef7cc705'
+        let URL = `https://www.omdbapi.com/?s=${props.userSearch}&apikey=ef7cc705`
         let resp = await fetch(URL)
         let data = await resp.json()
         setData(data.Search)
