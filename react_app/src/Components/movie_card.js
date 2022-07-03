@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import axios from "axios";
 
 function MovieCard(props) {
 
@@ -10,8 +11,7 @@ function MovieCard(props) {
 
     const getDataFromApi = async () => {
         let URL = `https://www.omdbapi.com/?s=${props.userSearch}&apikey=ef7cc705`
-        let resp = await fetch(URL)
-        let data = await resp.json()
+        let {data} = await axios(URL);
         setData(data.Search)
     }
 
@@ -22,11 +22,11 @@ function MovieCard(props) {
                 {data.map(item => {
                     return (
                         <div key={item.imdbID} className="row-cols-2 d-flex flex-wrap p-1 w-25">
-                            <div className="card bg-dark text-warning p-2 mb-3 shadow rounded-3 w-100 mx-auto">
-                                <p>Title: {item.Title}</p>
+                            <div className="card bg-dark text-center text-warning p-2 mb-3 shadow rounded-3 w-100 mx-auto">
+                                <p className="small">{item.Title}</p>
                                 <img className="w-100 h-100" src={item.Poster} alt=""/>
-                                <p>Type: {item.Type}</p>
-                                <div>Year: {item.Year}</div>
+                                <div className="lead">Year: {item.Year}</div>
+                                <button className="btn btn-outline-warning mt-1">More-Info</button>
                             </div>
                         </div>
                     )

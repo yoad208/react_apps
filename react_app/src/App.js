@@ -8,18 +8,14 @@ import MovieCard from "./Components/movie_card";
 
 
 const App = () => {
-    const [search, setSearch] = useState()
-
-    const getUserSearch = (_val) => {
-        setSearch(_val)
-    }
+    const [search, setSearch] = useState('Power Rangers')
 
     return (
         <div className="App bg-warning">
             <Header>
                 <Logo/>
                 <Navigation/>
-                <Search getUserSearch={getUserSearch}/>
+                <Search getUserSearch={setSearch}/>
             </Header>
 
             <MovieCard userSearch={search}/>
