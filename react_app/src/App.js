@@ -8,7 +8,7 @@ import MovieCard from "./Components/movie_card";
 
 
 const App = () => {
-    const [search, setSearch] = useState('')
+    const [search, setSearch] = useState()
 
     const getUserSearch = (_val) => {
         setSearch(_val)

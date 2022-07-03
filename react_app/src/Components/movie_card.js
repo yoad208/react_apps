@@ -6,7 +6,7 @@ function MovieCard(props) {
 
     useEffect(() => {
         getDataFromApi()
-    }, [])
+    },[data])
 
     const getDataFromApi = async () => {
         let URL = `https://www.omdbapi.com/?s=${props.userSearch}&apikey=ef7cc705`
