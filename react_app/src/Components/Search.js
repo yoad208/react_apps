@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useRef} from 'react';
 
 function Search(props) {
 
 
-    let userSearch = React.createRef()
+    let userSearch = useRef('')
 
     const sendUserSearch = () => {
         props.getUserSearch(userSearch.current.value)
