@@ -1,19 +1,22 @@
-import React, {useRef} from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
 
 function Navigation(props) {
 
-    const sort = useRef('')
-
     return (
+        <Router>
         <div className="container">
             <div className="navbar navbar-expand-lg p-3">
-                <a className="btn-sm btn-warning p-2 me-2 text-decoration-none" href="#">Home</a>
-                <a className="btn-sm btn-warning p-2 me-2 text-decoration-none" href="#">Category's</a>
-                <a className="btn-sm btn-warning p-2 me-2 text-decoration-none" href="#">Setting</a>
-                <a className="btn-sm btn-warning p-2 me-2 text-decoration-none" href="#">Help</a>
-                <a className="btn-sm btn-warning p-2 me-2 text-decoration-none" href="#">Contact</a>
-            </div>
+                    <div className="navbar-nav">
+                        <Link className="btn-sm btn-warning text-decoration-none me-2" to="Home">Home</Link>
+                        <Link className="btn-sm btn-warning text-decoration-none me-2" to="Category's">Category's</Link>
+                        <Link className="btn-sm btn-warning text-decoration-none me-2" to="Setting">Setting</Link>
+                        <Link className="btn-sm btn-warning text-decoration-none me-2" to="Help">Help</Link>
+                        <Link className="btn-sm btn-warning text-decoration-none me-2" to="Contact">Contact</Link>
+                    </div>
+                </div>
         </div>
+        </Router>
     );
 }
 
