@@ -5,6 +5,8 @@ import Search from "./Components/search";
 import Logo from "./Components/logo";
 import MovieCard from "./Components/movie_card";
 import SortMoviesBy from "./Components/sortMoviesBy";
+import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
+import MovieInfo from "./Components/movieInfo";
 
 const App = () => {
     const [search, setSearch] = useState('Power Rangers')
@@ -13,15 +15,19 @@ const App = () => {
     document.body.style.backgroundColor = '#f6c102'
 
     return (
+        <Router>
             <div className="App">
                 <Header>
                     <Logo/>
                     <SortMoviesBy sortByUser={setSort}/>
                     <Search getUserSearch={setSearch}/>
                 </Header>
-
-                <MovieCard userSearch={search} sortBy={sort}/>
             </div>
+            <Routes>
+                <Route exact path="/" element={ <MovieCard userSearch={search} sortBy={sort}/> }> </Route>
+                <Route exact path="/:id" element={ <MovieInfo/> }> </Route>
+            </Routes>
+        </Router>
     )
 }
 
