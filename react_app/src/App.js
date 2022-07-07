@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./Components/header";
 import Search from "./Components/search";
 import Logo from "./Components/logo";
 import MovieCard from "./Components/movie_card";
 import SortMoviesBy from "./Components/sortMoviesBy";
-import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import MovieInfo from "./Components/movieInfo";
 
 const App = () => {
