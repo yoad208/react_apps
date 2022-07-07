@@ -6,7 +6,7 @@ function Search(props) {
 
     return (
         <div className="container d-flex justify-content-end">
-            <input defaultValue="Search" ref={userSearch} type="text" className="form-control w-50"/>
+            <input defaultValue="Search" ref={userSearch} type="text" className="form-control w-25"/>
             <button onClick={() => {
                 props.getUserSearch(userSearch.current.value)
             }} className="btn btn-warning">Search</button>
