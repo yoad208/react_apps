@@ -4,8 +4,8 @@ function Header(props) {
 
 
     return (
-        <div className="container-fluid bg-dark">
-            <div className="container d-flex align-items-center mb-3">
+        <div className="container-fluid header">
+            <div className=" container d-flex justify-content-between mb-3 pt-5">
                 {props.children}
             </div>
         </div>

@@ -1,10 +1,9 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, {useState} from "react";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./Components/header";
 import Search from "./Components/search";
-import Logo from "./Components/logo";
 import MovieCard from "./Components/movie_card";
 import SortMoviesBy from "./Components/sortMoviesBy";
 import MovieInfo from "./Components/movieInfo";
@@ -17,16 +16,15 @@ const App = () => {
 
     return (
         <Router>
-            <div className="App">
+            <div className="App d-flex justify-content-between p-0">
                 <Header>
-                    <Logo/>
                     <Search getUserSearch={setSearch}/>
                     <SortMoviesBy sortByUser={setSort}/>
                 </Header>
             </div>
             <Routes>
-                <Route exact path="/" element={ <MovieCard userSearch={search} sortBy={sort}/> }> </Route>
-                <Route exact path="/:id" element={ <MovieInfo/> }> </Route>
+                <Route exact path="/" element={<MovieCard userSearch={search} sortBy={sort}/>}> </Route>
+                <Route exact path="/:id" element={<MovieInfo/>}> </Route>
             </Routes>
         </Router>
     )

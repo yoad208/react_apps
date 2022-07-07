@@ -5,7 +5,7 @@ function SortMoviesBy(props) {
     let userSelect = useRef()
 
     return (
-        <div className="">
+        <div className="mb-5">
             <select onChange={() => {
                 props.sortByUser(userSelect.current.value)
             }} ref={userSelect} className="btn btn-warning">

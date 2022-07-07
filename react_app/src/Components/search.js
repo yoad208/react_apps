@@ -7,12 +7,12 @@ function Search(props) {
     const navigate = useNavigate();
 
     return (
-        <div className="container d-flex justify-content-end">
-            <input defaultValue="Search" ref={userSearch} type="text" className="form-control w-25"/>
+        <div className="container d-flex ">
+            <input defaultValue="Search" ref={userSearch} type="text" className="search form-control mb-5"/>
             <button onClick={() => {
                 props.getUserSearch(userSearch.current.value)
                 navigate('/')
-            }} className="btn btn-warning me-3">Search</button>
+            }} className="btn btn-warning mb-5">Search</button>
         </div>
     );
 }
