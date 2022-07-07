@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {createContext, useEffect, useState} from 'react';
 import axios from "axios";
 import { sortBy } from "lodash/collection";
 import { Link } from "react-router-dom";
@@ -28,16 +28,14 @@ function MovieCard(props) {
     if (error.Response !== 'False') {
         return (
             <div className="container">
-                <div className="row ">
+                <div className="row">
                     <h2>Movies</h2>
                     {data.map(item => {
                         return (
-                            <div key={item.imdbID}
-                                 className="col-lg-3 col-md-6 col-sm-12 d-flex flex-wrap p-1 w-25">
-                                <div
-                                    className="card bg-dark text-center text-warning p-2 mb-3 shadow rounded-3 w-100 mx-auto">
+                            <div key={item.imdbID} className="col-lg-4 col-md-6 d-flex flex-wrap">
+                                <div className="card bg-dark text-center text-warning p-3 mb-3 shadow rounded-3 w-100">
                                     <p className="small">{item.Title}</p>
-                                    <img className="w-100 h-100" src={item.Poster} alt=""/>
+                                    <img className="w-100 h-100" src={item.Poster} alt="Poster"/>
                                     <div className="lead">Year: {item.Year}</div>
                                     <Link className="btn btn-outline-warning mt-1" to={"/" + item.imdbID}>More info </Link>
                                 </div>

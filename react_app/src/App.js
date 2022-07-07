@@ -19,8 +19,8 @@ const App = () => {
             <div className="App">
                 <Header>
                     <Logo/>
-                    <SortMoviesBy sortByUser={setSort}/>
                     <Search getUserSearch={setSearch}/>
+                    <SortMoviesBy sortByUser={setSort}/>
                 </Header>
             </div>
             <Routes>
