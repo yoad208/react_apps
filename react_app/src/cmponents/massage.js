@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Photos(props) {
+function Massage(props) {
     return (
         <div className="container">
-            Photos
+            massage
         </div>
     );
 }
 
-export default Photos;
+export default Massage;

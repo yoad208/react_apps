@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Posts(props) {
+function CreateMassage(props) {
     return (
         <div className="container">
-            Posts
+            Home
         </div>
     );
 }
 
-export default Posts;
+export default CreateMassage;
