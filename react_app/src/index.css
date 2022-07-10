@@ -5,3 +5,25 @@ body {
     max-width: 100%;
     overflow-x: hidden;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #d5e2fd;
+    border-radius: 90px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #b9bac2;
+    border-radius: 90px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #919090;
+    border-radius: 90px;
+}
