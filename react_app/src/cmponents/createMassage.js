@@ -1,36 +1,65 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faPaperPlane} from '@fortawesome/free-solid-svg-icons'
+import {socket} from "../App";
 
 
 function CreateMassage(props) {
 
-    let [newMassage, setMassage] = useState([])
-    let userMassage = useRef()
+    const messageInput = useRef()
+    let [userName, setUserName] = useState('')
+    let [connectRoom, setConnectRoom] = useState('')
+    let [message, setMessage] = useState('')
+    let [messageList, setMessageList] = useState([])
 
-    const changeMassage = (e) => {
-        setMassage(userMassage.current.value)
+    useEffect(() => {
+        socket.on('received_user', user => {
+            setUserName(user)
+        })
+        socket.on('received_room', room => {
+            setConnectRoom(room)
+        })
+        socket.on('received_message', data => {
+            setMessageList([...messageList, data])
+        })
+    },[socket])
+
+
+    const changeMessage = () => {
+        setMessage(messageInput.current.value)
     }
 
-    const createMassage = (e) => {
+    const createMessage = (e) => {
         e.preventDefault()
 
-        const massages = {
-            user: 'Yoad Azani',
-            massage: newMassage,
+        const messageObj = {
+            room: connectRoom,
+            user: userName,
+            message: message
         }
 
-        props.handlerCreateMassage(massages)
+
+        socket.emit('send_message', messageObj)
+        setMessageList([...messageList, messageObj])
+        messageInput.current.value = ''
     }
 
     return (
-        <form className="d-flex border border-success rounded-pill bg-light ms-3 me-3" onSubmit={createMassage}>
-            <input ref={userMassage} onChange={changeMassage}
-                   className="form-control border-0 rounded-pill" placeholder="Massage" type="text"/>
-            <button className="btn btn-outline-success rounded-pill border-0">
-                <FontAwesomeIcon icon={faPaperPlane}/>
-            </button>
-        </form>
+        <div className="container col-lg-8 mx-auto">
+            <form onSubmit={createMessage} className="d-flex border border-success rounded-pill bg-light">
+                <input
+                    onChange={changeMessage}
+                    ref={messageInput}
+                    className="form-control border-0 rounded-pill bg-light"
+                    placeholder="Massage"
+                    type="text"
+                />
+                <button className="btn btn-outline-success rounded-pill border-0">
+                    <FontAwesomeIcon icon={faPaperPlane}/>
+                </button>
+            </form>
+        </div>
+
     );
 }
 
