@@ -7,20 +7,13 @@ import {socket} from "../App";
 function CreateMassage(props) {
 
     const messageInput = useRef()
-    let [userName, setUserName] = useState('')
-    let [connectRoom, setConnectRoom] = useState('')
     let [message, setMessage] = useState('')
     let [messageList, setMessageList] = useState([])
 
     useEffect(() => {
-        socket.on('received_user', user => {
-            setUserName(user)
-        })
-        socket.on('received_room', room => {
-            setConnectRoom(room)
-        })
         socket.on('received_message', data => {
-            setMessageList([...messageList, data])
+            setMessageList(messageList => [...messageList, data])
+            props.setNewMessageList(messageList => [...messageList, data])
         })
     },[socket])
 
@@ -33,14 +26,15 @@ function CreateMassage(props) {
         e.preventDefault()
 
         const messageObj = {
-            room: connectRoom,
-            user: userName,
-            message: message
+            room: props.room,
+            user: props.user,
+            message: message,
+            time: new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes()
         }
 
 
         socket.emit('send_message', messageObj)
-        setMessageList([...messageList, messageObj])
+        setMessageList(messageList => [...messageList, messageObj])
         messageInput.current.value = ''
     }
 

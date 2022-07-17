@@ -1,4 +1,4 @@
-import React, {createContext, useContext, useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import io from 'socket.io-client'
 import Login from "./cmponents/Base/login";
@@ -13,6 +13,9 @@ function App(props) {
     document.body.style.backgroundColor = '#343434'
 
     let [login, setLogin] = useState(false)
+    let [userName, setUserName] = useState('')
+    let [contactRoom, setContactRoom] = useState('')
+    let [newList, setNewList] = useState([])
 
 
     useEffect(() => {
@@ -23,11 +26,11 @@ function App(props) {
         <div className="App">
             <div className="row mt-1">
                 {!login ? (
-                    <Login login={setLogin}/>
+                    <Login login={setLogin} user={setUserName} room={setContactRoom}/>
                 ) : (
                     <div className="container bg-body bg-opacity-25">
-                        <Massage />
-                        <CreateMassage />
+                        <Massage newMessageList={newList} user={userName}/>
+                        <CreateMassage user={userName} room={contactRoom} setNewMessageList={setNewList}/>
                     </div>
                 )}
             </div>

@@ -3,6 +3,8 @@ const http = require('http');
 const cors = require('cors');
 const {Server} = require("socket.io");
 
+const port = process.env.PORT | 3001
+
 const app = express();
 
 const server = http.createServer(app);
@@ -18,13 +20,8 @@ const io = new Server(server, {
 io.on('connection', (socket) => {
     console.log(`user ${socket.id} connected`);
 
-    socket.on('set_user', user => {
-        socket.emit('received_user', user)
-    })
-
     socket.on('connect_room', room => {
         socket.join(room)
-        socket.emit('received_room', room)
         console.log(`user join ${room} room`)
     })
 
@@ -38,6 +35,6 @@ io.on('connection', (socket) => {
     });
 });
 
-server.listen(3001, () => {
+server.listen(port, () => {
     console.log('listening on 3000');
 });
