@@ -7,12 +7,12 @@ function Massage({user, newMessageList}) {
         <div className="container mx-auto overflow-auto text-light" style={{minHeight: '92vh', maxWidth: '100%'}}>
             {newMessageList.map((data, index) => {
                 return (
-                    <div className={data.user === user
+                    <div  key={index} className={data.user === user
                         ? "d-flex justify-content-start me-5"
                         : "d-flex justify-content-end ms-5"
                     }>
                         <div className="d-flex flex-column">
-                            <div key={index} className={data.user === user
+                            <div className={data.user === user
                                 ? "bg-info border rounded-3 bg-success bg-opacity-50 p-2"
                                 : "bg-light border rounded-3 bg-success bg-opacity-50 p-2"}
                                  style={{lineHeight: '8px', wordWrap:'break-word', maxHeight: '6rem', width: 230}}>
