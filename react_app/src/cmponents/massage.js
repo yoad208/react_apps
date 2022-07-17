@@ -4,7 +4,7 @@ import React from 'react';
 function Massage({user, newMessageList}) {
 
     return (
-        <div className="container mx-auto overflow-auto text-light" style={{height: '92vh', maxWidth: '85%'}}>
+        <div className="container mx-auto overflow-auto text-light" style={{minHeight: '92vh', maxWidth: '100%'}}>
             {newMessageList.map((data, index) => {
                 return (
                     <div className={data.user === user
