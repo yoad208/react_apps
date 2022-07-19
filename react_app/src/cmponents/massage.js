@@ -30,7 +30,7 @@ function Massage({login, newMessageList}) {
 
 
     return (
-        <div className="container mx-auto overflow-auto text-light" style={{minHeight: '92vh', maxWidth: '100%'}}>
+        <div className="container mx-auto overflow-auto w-75 text-light" style={{minHeight: '92vh', maxWidth: '100%'}}>
             <><ToastContainer draggable={false} autoClose={8000}/></>
             {newMessageList.map((data, index) => {
                 return (
