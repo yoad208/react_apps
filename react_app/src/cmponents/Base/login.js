@@ -25,11 +25,13 @@ function Login(props) {
     }
 
     const error = () => {
-        return toast('user name & contact room is required', {
+        return toast('name & contactRoom is required', {
             draggable: true,
             style: {
                 backgroundColor: '#ff4d4d',
-                color: '#000000'
+                color: '#000000',
+                fontStyle: 'italic',
+                borderRadius: '0 15px 15px 15px',
             },
             position: toast.POSITION.TOP_LEFT
         })

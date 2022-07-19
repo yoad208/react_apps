@@ -31,7 +31,7 @@ function App(props) {
                 ) : (
                     <context.Provider value={userName}>
                         <div className="container bg-body bg-opacity-25">
-                            <Massage newMessageList={newList}/>
+                            <Massage login={login} newMessageList={newList}/>
                             <CreateMassage room={contactRoom} setNewMessageList={setNewList}/>
                         </div>
                     </context.Provider>
