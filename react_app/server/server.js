@@ -37,8 +37,4 @@ io.on('connection', (socket) => {
 
 server.listen(port, () => {
     console.log('listening on 3001');
-<<<<<<< HEAD
-});
-=======
-});
->>>>>>> 7d753d91ab7ee485c5df2a677b6326f4f59d2dee
+})

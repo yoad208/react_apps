@@ -1,7 +1,7 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faPaperPlane} from '@fortawesome/free-solid-svg-icons'
-import {socket} from "../App";
+import {socket, context} from "../App";
 
 
 function CreateMassage(props) {
@@ -9,6 +9,8 @@ function CreateMassage(props) {
     const messageInput = useRef()
     let [message, setMessage] = useState('')
     let [messageList, setMessageList] = useState([])
+
+    const user = useContext(context)
 
     useEffect(() => {
         socket.on('received_message', data => {
@@ -27,7 +29,7 @@ function CreateMassage(props) {
 
         const messageObj = {
             room: props.room,
-            user: props.user,
+            user: user,
             message: message,
             time: new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes()
         }

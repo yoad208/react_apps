@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {createContext, useEffect, useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import io from 'socket.io-client'
 import Login from "./cmponents/Base/login";
@@ -8,6 +8,7 @@ import CreateMassage from "./cmponents/createMassage";
 export let socket;
 const CONNECTING_PORT = 'http://localhost:3001';
 
+export const context = createContext({})
 
 function App(props) {
     document.body.style.backgroundColor = '#343434'
@@ -28,10 +29,12 @@ function App(props) {
                 {!login ? (
                     <Login login={setLogin} user={setUserName} room={setContactRoom}/>
                 ) : (
-                    <div className="container bg-body bg-opacity-25">
-                        <Massage newMessageList={newList} user={userName}/>
-                        <CreateMassage user={userName} room={contactRoom} setNewMessageList={setNewList}/>
-                    </div>
+                    <context.Provider value={userName}>
+                        <div className="container bg-body bg-opacity-25">
+                            <Massage newMessageList={newList}/>
+                            <CreateMassage room={contactRoom} setNewMessageList={setNewList}/>
+                        </div>
+                    </context.Provider>
                 )}
             </div>
         </div>

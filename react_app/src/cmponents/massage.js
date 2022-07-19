@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {context} from "../App";
 
 
-function Massage({user, newMessageList}) {
+function Massage({ newMessageList }) {
+
+    const user = useContext(context)
 
     return (
         <div className="container mx-auto overflow-auto text-light" style={{minHeight: '92vh', maxWidth: '100%'}}>
