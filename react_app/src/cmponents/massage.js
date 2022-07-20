@@ -30,7 +30,7 @@ function Massage({login, newMessageList}) {
 
 
     return (
-        <div className="container mx-auto overflow-auto w-75 text-light" style={{minHeight: '92vh', maxWidth: '100%'}}>
+        <div className="container mx-auto overflow-auto w-75 text-light" style={{minHeight: '85vh', maxWidth: '100%'}}>
             <><ToastContainer draggable={false} autoClose={8000}/></>
             {newMessageList.map((data, index) => {
                 return (
@@ -42,7 +42,7 @@ function Massage({login, newMessageList}) {
                             <div className={data.user === user
                                 ? "bg-info border rounded-3 bg-success bg-opacity-50 p-2"
                                 : "bg-light border rounded-3 bg-success bg-opacity-50 p-2"}
-                                 style={{lineHeight: '8px', wordWrap: 'break-word', maxHeight: '6rem', width: 230}}>
+                                 style={{lineHeight: '8px', wordWrap: 'break-word', width: 230}}>
                                 <span className="h6">{data.message}</span>
                             </div>
                             <div className="d-flex mb-3">

@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useRef, useState} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faPaperPlane} from '@fortawesome/free-solid-svg-icons'
 import {socket, context} from "../App";
+import massage from "./massage";
 
 
 function CreateMassage(props) {
@@ -20,8 +21,8 @@ function CreateMassage(props) {
     },[socket])
 
 
-    const changeMessage = () => {
-        setMessage(messageInput.current.value)
+    const changeMessage = (e) => {
+        setMessage(e.target.value)
     }
 
     const createMessage = (e) => {
@@ -41,15 +42,15 @@ function CreateMassage(props) {
     }
 
     return (
-        <div className="container col-lg-8 mx-auto">
+        <div className="container col-lg-8 mx-auto mb-3">
             <form onSubmit={createMessage} className="d-flex border border-success rounded-pill bg-light">
-                <input
-                    onChange={changeMessage}
-                    ref={messageInput}
-                    className="form-control border-0 rounded-pill bg-light"
-                    placeholder="Massage"
-                    type="text"
+                <textarea onChange={e => changeMessage(e)}
+                          ref={messageInput}
+                          className="form-control border-0 rounded-pill bg-light"
+                          style={{resize: "none"}}
+                          placeholder="Massage"
                 />
+
                 <button className="btn btn-outline-success rounded-pill border-0">
                     <FontAwesomeIcon icon={faPaperPlane}/>
                 </button>
