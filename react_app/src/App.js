@@ -6,7 +6,7 @@ import Massage from "./cmponents/massage";
 import CreateMassage from "./cmponents/createMassage";
 
 export let socket;
-const CONNECTING_PORT = 'http://localhost:3001';
+const CONNECTING_PORT = 'http://localhost:3001/';
 
 export const context = createContext({})
 
