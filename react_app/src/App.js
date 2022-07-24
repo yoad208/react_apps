@@ -1,19 +1,15 @@
-import React, {Component} from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Counter from "./Components/counter";
-import UserInput from "./Components/userInput";
+import React from "react";
 
 
-class App extends Component {
+function App() {
 
 
-    render() {
-        return (
-            <div className="App">
+    return (
+        <div className="App">
 
-            </div>
-        )
-    };
+        </div>
+    )
+
 }
 
 export default App;
