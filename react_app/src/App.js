@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import Login from "./Components/baisc/login";
 import Board from "./Components/baisc/board";
 
@@ -15,7 +15,6 @@ function App() {
                     : <Board/>
                 }
             </div>
-
         </div>
 
     )

@@ -10,10 +10,11 @@ function Navigation(props) {
     }
 
     return (
-
         <div className="navigation" style={navigation}>
             <div className="logo" style={{flex: 'start'}}>
-                <img src="https://icon-library.com/images/todo-icon/todo-icon-5.jpg" alt="logo"/>
+                <img
+                    src="https://o.remove.bg/downloads/8f0d7f33-ec8d-4a89-935a-cd908286a622/images-removebg-preview.png"
+                    alt="logo"/>
             </div>
             <ul style={navigation}>
                 <li>Home</li>
