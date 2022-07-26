@@ -59,8 +59,10 @@ body {
     background-repeat: no-repeat;
 }
 
-.navigation .logo img {
-    max-width: 100px;
+.navigation .logo img{
+    max-width: 80px;
+    margin-left: 2rem;
+    transform: rotate(90deg);
 }
 
 .navigation ul li {

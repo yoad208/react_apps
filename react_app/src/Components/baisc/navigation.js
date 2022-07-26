@@ -1,5 +1,5 @@
 import React from 'react';
-
+import logo from '../../images/logo.png'
 function Navigation(props) {
 
     const navigation = {
@@ -13,7 +13,7 @@ function Navigation(props) {
         <div className="navigation" style={navigation}>
             <div className="logo" style={{flex: 'start'}}>
                 <img
-                    src="https://o.remove.bg/downloads/8f0d7f33-ec8d-4a89-935a-cd908286a622/images-removebg-preview.png"
+                    src={logo}
                     alt="logo"/>
             </div>
             <ul style={navigation}>

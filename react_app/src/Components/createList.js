@@ -19,7 +19,7 @@ function CreateList({lists}) {
         console.log(statusList)
         setIsClicked(false)
         setNewList([...newList, <NewList name={statusList}/>])
-        return lists([...newList, <NewList name={statusList}/>])
+        return lists([...newList, {id: Date.now(), listName: <NewList name={statusList}/>}])
     }
 
     return (

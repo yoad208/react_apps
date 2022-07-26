@@ -18,7 +18,9 @@ function Board(props) {
                     flexWrap: 'wrap'
                 }}>
                 {newList.map(list => {
-                    return list
+                    return <div key={list.id}>
+                        {list.listName}
+                    </div>
                 })}
                 <CreateList lists={setNewList}/>
             </div>

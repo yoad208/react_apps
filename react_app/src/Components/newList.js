@@ -1,18 +1,22 @@
-import React, {useState} from 'react';
+import React, {useEffect, useReducer, useState} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faAdd} from '@fortawesome/free-solid-svg-icons'
 import Tasks from "./tasks";
+import newList from "./newList";
+
 
 function NewList(props) {
 
     const [newTask, setNewTask] = useState([])
+    const [id, setId] = useState(Date.now)
 
     const createNewTask = () => {
-        return setNewTask([...newTask, <Tasks/>])
-    }
+        setId(Date.now)
+        return setNewTask([...newTask, {id: id, task:<Tasks name={props.name} id={id} list={newTask}/>
+    }])}
 
     return (
-        <div className="list-container">
+        <div className="list-container" style={{paddingRight: '1rem', maxWidth: 'calc(1000px / 3)'}}>
             <div
                 className="list-header"
                 style={{
@@ -37,7 +41,9 @@ function NewList(props) {
                     padding: '12px 0'
                 }}>
                 {newTask.map(tasks => {
-                    return tasks
+                    return <div key={tasks.id}>
+                        {tasks.task}
+                    </div>
                 })}
             </div>
         </div>
