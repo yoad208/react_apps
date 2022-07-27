@@ -1,6 +1,10 @@
 import React, {useState} from "react";
 import Login from "./Components/baisc/login";
-import Board from "./Components/baisc/board";
+import Header from "./Components/baisc/header";
+import Navigation from "./Components/baisc/navigation";
+import Logo from "./Components/baisc/logo";
+import Body from "./Components/baisc/body";
+import CreateList from "./Components/createList";
 
 
 function App() {
@@ -9,10 +13,26 @@ function App() {
 
     return (
         <div className="App">
-            <div className="container" style={{padding: '0 6rem'}}>
+            <div className="container">
                 {!login
                     ? <Login setLogin={setLogin}/>
-                    : <Board/>
+                    : <>
+                        <Header>
+                            <div
+                                style={{
+                                    padding: '0 6rem',
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'center'
+                                }}>
+                                <Logo/>
+                                <Navigation/>
+                            </div>
+                        </Header>
+                        <Body>
+                            <CreateList/>
+                        </Body>
+                    </>
                 }
             </div>
         </div>
