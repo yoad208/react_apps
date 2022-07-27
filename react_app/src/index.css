@@ -34,6 +34,7 @@ body {
     max-width: 95%;
     height: 2rem;
     border: none;
+    outline: none;
     border-radius: 6px;
     background-color: #e5effc;
 }

@@ -1,14 +1,31 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faTrashCan} from "@fortawesome/free-solid-svg-icons";
+import {faTrashCan, faEdit, faSave} from "@fortawesome/free-solid-svg-icons";
 import {ACTIONS} from "./createList";
+import {useRef, useState} from "react";
 
 
 export default function ShowLists({list, dispatch}) {
 
+    const input = useRef()
+    const [value, setValue] = useState(list.status)
+    const [flag, setFlag] = useState(false)
+
+
+    const editList = () => {
+        dispatch({type: ACTIONS.EDIT_LIST, payload: {status: value, id: list.id}})
+        setFlag(!flag)
+    }
+
+    const updateList = (e) => {
+        e.preventDefault();
+        dispatch({type: ACTIONS.UPDATE_LIST, payload: {status: value, id: list.id}})
+        list.edit = false
+        setFlag(!flag)
+    }
+
     const deleteList = () => {
         dispatch({type: ACTIONS.DELETE_LIST, payload: {id: list.id}})
     }
-
 
     const listStyle = {
         display: 'flex',
@@ -18,16 +35,25 @@ export default function ShowLists({list, dispatch}) {
         backgroundColor: 'rgba(0,0,0,.1)',
         padding: '12px 6px',
         borderTop:
-            list.status === 'TODO' ? '3px solid #f00':
-                list.status === 'IN-PROGRESS' ? '3px solid gold':
-                    list.status === 'COMPLETE' ? '3px solid #0f0':
+            list.status === 'TODO' ? '3px solid #f00' :
+                list.status === 'IN-PROGRESS' ? '3px solid gold' :
+                    list.status === 'COMPLETE' ? '3px solid #0f0' :
                         '3px solid rgba(0,0,0,.3)'
     }
 
     return (
         <div style={listStyle}>
-            {list.status}
-            <FontAwesomeIcon onClick={deleteList} icon={faTrashCan}/>
+            {list.edit && flag
+                ? <form onSubmit={updateList}>
+                    <input style={{backgroundColor: "transparent" ,border: 'none', outline: 'none'}} ref={input} type="text" placeholder="Change status" onChange={() => setValue(input.current.value)}/>
+                </form>
+                : list.status}
+            <div style={{display: 'flex', gap: '1rem'}}>
+                <FontAwesomeIcon style={{color: '#9f0404'}} onClick={deleteList} icon={faTrashCan}/>
+                {!flag
+                    ? <FontAwesomeIcon style={{color: 'rgba(0,0,0,.5)'}} onClick={editList} icon={faEdit}/>
+                    : <FontAwesomeIcon style={{color: '#6b6be5'}} onClick={updateList} icon={faSave}/>}
+            </div>
         </div>
     );
 }
