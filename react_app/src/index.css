@@ -67,3 +67,15 @@ body {
     border-bottom: 3px solid rgba(0, 0, 0, .3);
     background: rgba(0, 0, 0, .1);
 }
+
+.createTask {
+    padding: 0 1px;
+    color: rgba(0,0,0,.3);
+    cursor: pointer;
+    background-color: transparent;
+    transition: .3s;
+}
+
+.createTask:hover {
+    color: #9393fd;
+}

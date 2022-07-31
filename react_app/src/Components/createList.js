@@ -103,7 +103,7 @@ export default function CreateList(props) {
                     </>
                 }
             </form>
-            <div style={{display: "flex", gap: '1.5rem', margin: '3.5rem 6rem', flexWrap: 'wrap'}}>
+            <div style={{display: "flex", gap: '1rem', margin: '3.5rem 6rem', flexWrap: 'wrap'}}>
                 {lists.map(list => {
                     return <ShowLists key={list.id} list={list} dispatch={dispatch}/>
                 })}
