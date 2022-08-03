@@ -1,10 +1,12 @@
-import React, {useRef} from 'react';
+import React, {useContext, useRef} from 'react';
+import {loginProvider} from "../../App";
 
-function Login({setLogin}) {
+function Login() {
 
     const name = useRef('')
     const email = useRef('')
     const pass = useRef('')
+    const {setLogin} = useContext(loginProvider)
 
     const set_login = () => {
         const data = {

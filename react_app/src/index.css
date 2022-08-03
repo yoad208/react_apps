@@ -3,7 +3,7 @@ body {
     font-style: italic;
     font-family: sans-serif;
     max-width: 100%;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .login {
@@ -55,17 +55,19 @@ body {
 
 .navigation ul li {
     list-style: none;
-    border-left: 3px solid rgba(0, 0, 0, .3);
-    padding: 6px 12px;
+    font-size: medium;
+    padding: 6px 6px;
+    margin-right: 1rem;
+    width: 11rem;
     cursor: pointer;
     transition: .3s;
     color: rgb(38, 38, 38);
+    display: flex;
+    gap: 12px;
 }
 
 .navigation ul li:hover {
-    border-left: none;
-    border-bottom: 3px solid rgba(0, 0, 0, .3);
-    background: rgba(0, 0, 0, .1);
+    transform: translate(2px, 4px);
 }
 
 .createTask {

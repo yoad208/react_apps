@@ -1,7 +1,7 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrashCan, faEdit, faSave, faEyeDropper} from "@fortawesome/free-solid-svg-icons";
 import {ACTIONS} from "./createList";
-import React, {useEffect, useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 import CreateTask from "./createTask";
 import ColorPicker from "./colorPicker";
 
@@ -39,10 +39,11 @@ export default function ShowLists({list, dispatch}) {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        width: 'calc(1000px / 3)',
+        width: 'calc(1000px / 3.5)',
         backgroundColor: 'rgba(0,0,0,.1)',
         padding: '12px 6px',
-        borderTop: (color === '#fff' ? '3px solid #9D9D9D': `3px solid ${color.hex}`)
+        borderTop: (color === '#fff' ? '3px solid #9D9D9D': `3px solid ${color.hex}`),
+        borderRadius: '6px'
     }
 
     return (
@@ -57,7 +58,7 @@ export default function ShowLists({list, dispatch}) {
                 <div style={{display: 'flex', gap: '1rem'}}>
                     <FontAwesomeIcon style={{color: '#909b9b'}}
                                      icon={faEyeDropper}
-                                     onClick={() => setColorFlag(!colorFlag)}>color</FontAwesomeIcon>
+                                     onClick={getColorHex}>color</FontAwesomeIcon>
                     <FontAwesomeIcon style={{color: '#9f0404'}}
                                      onClick={deleteList}
                                      icon={faTrashCan}/>

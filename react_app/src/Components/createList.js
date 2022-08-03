@@ -56,11 +56,9 @@ export default function CreateList(props) {
         float: 'right',
         marginRight: '6rem',
         padding: '10px 6px',
-        border: '3px solid rgba(0,0,0,.3)',
-        borderRadius: '90px',
-        backgroundColor: 'rgba(0,0,0,.1)',
-        maxWidth: 'calc(1000px / 4)'
-
+        border: '2px solid rgba(0,0,0,.3)',
+        borderRadius: '6px',
+        maxWidth: 'calc(1000px / 4)',
     }
 
     const Flag = () => {
@@ -79,13 +77,13 @@ export default function CreateList(props) {
         <>
             <form style={formStyle} onSubmit={addList}>
                 {!flag
-                    ? <><span
-                        style={{
-                            marginRight: '2rem',
-                            fontSize: 'small'
-                        }}>Add new list</span>
-                        <FontAwesomeIcon onClick={Flag} icon={faAdd}/> </>
-                    : <>
+                    ? <div onClick={Flag} style={{
+                        fontSize: 'small',
+                        cursor: 'pointer'
+                    }}>
+                        <span style={{paddingRight: '2rem'}}>Add new list</span>
+                        <FontAwesomeIcon icon={faAdd}/> </div>
+                    : <div style={{cursor: 'pointer'}}>
                         <input
                             style={{
                                 backgroundColor: "transparent",
@@ -98,12 +96,12 @@ export default function CreateList(props) {
                                 border: "none",
                                 backgroundColor: "transparent"
                             }}
-                            type="submit"><FontAwesomeIcon
-                            icon={faAdd}/></button>
-                    </>
+                            type="submit"><FontAwesomeIcon style={{cursor: 'pointer'}} icon={faAdd}/>
+                        </button>
+                    </div>
                 }
             </form>
-            <div style={{display: "flex", gap: '1rem', margin: '3.5rem 6rem', flexWrap: 'wrap'}}>
+            <div style={{display: "flex", gap: '2rem', margin: '3.5rem 3.5rem 0 2rem ', flexWrap: 'wrap'}}>
                 {lists.map(list => {
                     return <ShowLists key={list.id} list={list} dispatch={dispatch}/>
                 })}
