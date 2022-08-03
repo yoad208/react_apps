@@ -3,7 +3,7 @@ import Logout from "./logout";
 import {useState} from "react";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCaretRight, faGear, faGlobe, faHome} from '@fortawesome/free-solid-svg-icons'
-import CreateWorkSpace from "../createWorkSpace";
+import CreateWorkSpace from "../operations/createWorkSpace";
 
 export default function Navigation({flagOpacityBody, opacity}) {
 

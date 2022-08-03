@@ -3,9 +3,9 @@ import Login from "./Components/baisc/login";
 import Header from "./Components/baisc/header";
 import Navigation from "./Components/baisc/navigation";
 import Body from "./Components/baisc/body";
-import CreateList from "./Components/createList";
+import CreateList from "./Components/operations/createList";
 import Logout from "./Components/baisc/logout";
-import CreateWorkSpace from "./Components/createWorkSpace";
+import CreateWorkSpace from "./Components/operations/createWorkSpace";
 
 
 export const loginProvider = createContext()

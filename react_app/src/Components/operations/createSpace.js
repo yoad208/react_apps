@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import workSpaceLogo from "../images/workSpaceLogo.png";
+import workSpaceLogo from "../../images/workSpaceLogo.png";
 import {ACTIONS} from "./createWorkSpace";
 
 export default function CreateSpace({dispatch, setActive}) {

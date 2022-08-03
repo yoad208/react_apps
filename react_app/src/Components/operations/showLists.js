@@ -3,7 +3,7 @@ import {faTrashCan, faEdit, faSave, faEyeDropper} from "@fortawesome/free-solid-
 import {ACTIONS} from "./createList";
 import React, {useRef, useState} from "react";
 import CreateTask from "./createTask";
-import ColorPicker from "./colorPicker";
+import ColorPicker from "../custom/colorPicker";
 
 
 export default function ShowLists({list, dispatch}) {
