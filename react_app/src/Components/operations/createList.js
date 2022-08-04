@@ -1,8 +1,7 @@
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faAdd} from '@fortawesome/free-solid-svg-icons'
-import React, {useEffect, useReducer, useRef, useState} from "react";
+import React, {useReducer, useRef, useState} from "react";
 import ShowLists from "./showLists";
-import useLocalStorage from "../customHooks/useLocalStorage";
 
 
 export const ACTIONS = {
