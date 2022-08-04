@@ -5,15 +5,15 @@ import Navigation from "./Components/baisc/navigation";
 import Body from "./Components/baisc/body";
 import CreateList from "./Components/operations/createList";
 import Logout from "./Components/baisc/logout";
-import CreateWorkSpace from "./Components/operations/createWorkSpace";
+import useLocalStorage from './Components/customHooks/useLocalStorage'
 
 
 export const loginProvider = createContext()
 
 function App() {
 
-    const [login, setLogin] = useState()
-    const [flag, setFlag] = useState(false)
+    const [login, setLogin] = useLocalStorage('login', false)
+    const [flag, setFlag] = useState(null)
 
     return (
         <loginProvider.Provider value={{login, setLogin}}>
@@ -32,9 +32,7 @@ function App() {
                                     margin: '.8rem 6rem',
                                     padding: '2px 5px',
                                     cursor: 'pointer',
-                                    listStyle: 'none',
-                                    border: '2px solid rgba(0,0,255,.1)',
-                                    borderRadius: '6px',
+                                    listStyle: 'none'
                                 }}>
                                     <Logout/>
                                 </div>

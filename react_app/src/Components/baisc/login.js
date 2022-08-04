@@ -20,9 +20,10 @@ function Login() {
     }
 
     return (
+
         <div className="login">
             <form onSubmit={e => e.preventDefault()}>
-            <h1>Login</h1>
+                <h1>Login</h1>
                 <input ref={name} type="text" placeholder='Name' required/>
                 <input ref={email} type="email" placeholder='Email' required/>
                 <input ref={pass} type="password" placeholder='Password' required/>

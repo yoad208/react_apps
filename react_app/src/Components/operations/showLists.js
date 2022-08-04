@@ -6,7 +6,7 @@ import CreateTask from "./createTask";
 import ColorPicker from "../custom/colorPicker";
 
 
-export default function ShowLists({list, dispatch}) {
+export default function ShowLists({list, dispatch, setList}) {
 
     const input = useRef()
     const [value, setValue] = useState(list.status)

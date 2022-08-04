@@ -26,6 +26,8 @@ export default function Navigation({flagOpacityBody, opacity}) {
         <div className="navigation" style={{
             navigationStyle,
             borderRight: '1px solid rgba(0,0,0,.2)',
+            backgroundColor: '#333',
+            color: '#aaa'
         }}>
             <Logo/>
             <ul style={navigationStyle}>

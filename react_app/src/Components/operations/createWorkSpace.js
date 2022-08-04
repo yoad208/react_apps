@@ -40,7 +40,7 @@ export default function CreateWorkSpace({setActive, active}) {
                 fontSize: 'large',
                 textTransform: 'uppercase',
                 outline: 'none',
-                color: 'rgba(0,0,0,.2)',
+                color: '#aaa',
                 backgroundColor: 'rgba(0,0,0,.1)',
             }} onClick={() => setActive(active => !active)}>New Space
             </button>

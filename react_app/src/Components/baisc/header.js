@@ -2,10 +2,11 @@
 export default function Header({children}) {
 
     const headerStyle = {
-        height: '3rem',
+        color: '#aaa',
         width: '85vw',
+        height: '3rem',
         overflow: 'hidden',
-        backgroundColor: 'rgba(0,0,0,.2)',
+        boxShadow: 'rgba(0, 0, 0, 0.1) 0 20px 25px -5px, rgba(0, 0, 0, 0.04) 0 10px 10px -5px'
     }
     return (
         <div style={headerStyle}>

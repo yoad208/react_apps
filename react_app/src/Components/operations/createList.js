@@ -1,7 +1,8 @@
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faAdd} from '@fortawesome/free-solid-svg-icons'
-import React, {useReducer, useRef, useState} from "react";
+import React, {useEffect, useReducer, useRef, useState} from "react";
 import ShowLists from "./showLists";
+import useLocalStorage from "../customHooks/useLocalStorage";
 
 
 export const ACTIONS = {
@@ -56,9 +57,12 @@ export default function CreateList(props) {
         float: 'right',
         marginRight: '6rem',
         padding: '10px 6px',
-        border: '2px solid rgba(0,0,0,.3)',
-        borderRadius: '6px',
+        border: flag ? '2px solid rgba(0,0,0,.3)' : null,
+        borderRadius: flag ? '180px' : null,
         maxWidth: 'calc(1000px / 4)',
+        position: "absolute",
+        bottom: '8%',
+        right: 0
     }
 
     const Flag = () => {
@@ -78,11 +82,16 @@ export default function CreateList(props) {
             <form style={formStyle} onSubmit={addList}>
                 {!flag
                     ? <div onClick={Flag} style={{
-                        fontSize: 'small',
-                        cursor: 'pointer'
+                        fontSize: 'large',
+                        cursor: 'pointer',
+                        border: '2px solid rgba(0,0,0,.3)',
+                        borderRadius: '180px',
+                        padding: '2.5px 5px 2.5px 5px',
+                        position: "absolute",
+                        bottom: '8%',
+                        right: '5%'
                     }}>
-                        <span style={{paddingRight: '2rem'}}>Add new list</span>
-                        <FontAwesomeIcon icon={faAdd}/> </div>
+                        <FontAwesomeIcon style={{textAlign: "center"}} icon={faAdd}/> </div>
                     : <div style={{cursor: 'pointer'}}>
                         <input
                             style={{

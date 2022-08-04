@@ -5,7 +5,7 @@ export default function ShowSpaces({spaces, dispatch}) {
             <li style={{
                 backgroundColor: 'transparent',
                 fontFamily: 'cursive',
-                color: 'rgba(0,0,0,.5)',
+                color: 'rgba(60,192,252,0.73)',
                 transform: "none",
             }}>
                 {spaces.name}
