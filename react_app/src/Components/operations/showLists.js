@@ -6,14 +6,13 @@ import CreateTask from "./createTask";
 import ColorPicker from "../custom/colorPicker";
 
 
-export default function ShowLists({list, dispatch, setList}) {
+export default function ShowLists({list, dispatch}) {
 
     const input = useRef()
     const [value, setValue] = useState(list.status)
     const [flag, setFlag] = useState(false)
     const [colorFlag, setColorFlag] = useState(false)
     const [color, setColor] = useState('#fff')
-
 
     const editList = () => {
         dispatch({type: ACTIONS.EDIT_LIST, payload: {status: value, id: list.id}})
@@ -39,11 +38,11 @@ export default function ShowLists({list, dispatch, setList}) {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        width: 'calc(1000px / 3.5)',
+        width: 'calc(1000px / 5)',
         backgroundColor: 'rgba(0,0,0,.1)',
         padding: '12px 6px',
-        borderTop: (color === '#fff' ? '3px solid #9D9D9D': `3px solid ${color.hex}`),
-        borderRadius: '6px'
+        borderTop: (color === '#fff' ? '3px solid #9D9D9D' : `3px solid ${color.hex}`),
+        borderRadius: '6px',
     }
 
     return (
@@ -52,7 +51,8 @@ export default function ShowLists({list, dispatch, setList}) {
                 {list.edit && flag
                     ? <form onSubmit={updateList}>
                         <input style={{backgroundColor: "transparent", border: 'none', outline: 'none'}} ref={input}
-                               type="text" placeholder="Change status" onChange={() => setValue(input.current.value)}/>
+                               type="text" placeholder="Change status"
+                               onChange={() => setValue(input.current.value)}/>
                     </form>
                     : list.status}
                 <div style={{display: 'flex', gap: '1rem'}}>
@@ -60,7 +60,9 @@ export default function ShowLists({list, dispatch, setList}) {
                                      icon={faEyeDropper}
                                      onClick={getColorHex}>color</FontAwesomeIcon>
                     <FontAwesomeIcon style={{color: '#9f0404'}}
-                                     onClick={deleteList}
+                                     onClick={() => {
+                                         deleteList()
+                                     }}
                                      icon={faTrashCan}/>
                     {!flag
                         ? <FontAwesomeIcon style={{color: 'rgba(0,0,0,.5)'}} onClick={editList} icon={faEdit}/>

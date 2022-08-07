@@ -1,6 +1,6 @@
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faAdd} from '@fortawesome/free-solid-svg-icons'
-import React, {useReducer, useRef, useState} from "react";
+import React, {useEffect, useReducer, useRef, useState} from "react";
 import ShowLists from "./showLists";
 
 
@@ -44,10 +44,11 @@ const newList = (status) => {
     return {id: Date.now(), status: status, edit: false}
 }
 
-export default function CreateList(props) {
+export default function CreateList() {
 
     const statusList = useRef()
-    const [flag, setFlag] = useState(false);
+    const [flag, setFlag] = useState(false)
+    const [notEmpty, setNotEmpty] = useState(false)
     const [lists, dispatch] = useReducer(reducer, [])
 
     const formStyle = {
@@ -60,9 +61,17 @@ export default function CreateList(props) {
         borderRadius: flag ? '180px' : null,
         maxWidth: 'calc(1000px / 4)',
         position: "absolute",
-        bottom: '8%',
-        right: 0
+        top: '14%',
+        left: '23%'
     }
+
+    useEffect(() => {
+        if (lists.length > 0) {
+            setNotEmpty(true)
+        } else {
+            setNotEmpty(false)
+        }
+    }, [lists])
 
     const Flag = () => {
         return setFlag(!flag)
@@ -85,13 +94,13 @@ export default function CreateList(props) {
                         cursor: 'pointer',
                         border: '2px solid rgba(0,0,0,.3)',
                         borderRadius: '180px',
-                        padding: '2.5px 5px 2.5px 5px',
+                        padding: '2px 5px 2px 5px',
                         position: "absolute",
-                        bottom: '8%',
-                        right: '5%'
+                        top: '50%',
+                        left: '23%'
                     }}>
-                        <FontAwesomeIcon style={{textAlign: "center"}} icon={faAdd}/> </div>
-                    : <div style={{cursor: 'pointer'}}>
+                        <FontAwesomeIcon style={{textAlign: "center"}} icon={faAdd}/></div>
+                    : <div style={{cursor: 'pointer', marginTop: '.3rem'}}>
                         <input
                             style={{
                                 backgroundColor: "transparent",
@@ -109,10 +118,43 @@ export default function CreateList(props) {
                     </div>
                 }
             </form>
-            <div style={{display: "flex", gap: '2rem', margin: '3.5rem 3.5rem 0 2rem ', flexWrap: 'wrap'}}>
-                {lists.map(list => {
-                    return <ShowLists key={list.id} list={list} dispatch={dispatch}/>
-                })}
+            <div style={{
+                margin: '2rem .5rem 0 1rem',
+                flexWrap: 'wrap',
+                boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+                borderRadius: '12px',
+                maxWidth: '53vw',
+                height: '37vw'
+            }}>
+            <div style={{height: '8vh', width: '53vw', borderTopLeftRadius: '12px', borderTopRightRadius: '12px', backgroundColor: 'rgba(24, 165, 227, 0.73)', marginBottom: '6px'}}/>
+
+
+                {!notEmpty ?<div style={{
+                    display: 'flex',
+                    marginLeft: '150px',
+                    flexDirection: 'column',
+                    gap: '3rem'
+                }}>
+                    <img style={{width: "400px"}}
+                         src="https://app-cdn.clickup.com/assets/images/illustrations/no-results-me-mode.svg" alt=""/>
+                    <span style={{paddingLeft: '50px'}}>You don't have any lists assigned to you</span>
+                </div> : null}
+
+
+                <div style={{
+                    display: "flex",
+                    gap: '1rem',
+                    marginLeft: '.3rem',
+                    overflow: "auto",
+                    overflowY: "hidden",
+                    overflowX: "-moz-hidden-unscrollable",
+                    maxWidth: '100%',
+                    height: '33vw',
+                }}>
+                    {lists.map(list => {
+                        return <ShowLists key={list.id} list={list} dispatch={dispatch}/>
+                    })}
+                </div>
             </div>
         </>
     )

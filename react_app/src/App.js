@@ -1,4 +1,4 @@
-import React, {createContext, useState} from "react";
+import React, {createContext, useEffect, useState} from "react";
 import Login from "./Components/baisc/login";
 import Header from "./Components/baisc/header";
 import Navigation from "./Components/baisc/navigation";
@@ -6,14 +6,16 @@ import Body from "./Components/baisc/body";
 import CreateList from "./Components/operations/createList";
 import Logout from "./Components/baisc/logout";
 import useLocalStorage from './Components/customHooks/useLocalStorage'
+import Calendar from "react-calendar";
 
 
 export const loginProvider = createContext()
 
 function App() {
 
+
     const [login, setLogin] = useLocalStorage('login', false)
-    const [flag, setFlag] = useState(null)
+    const [flag, setFlag] = useState(false)
 
     return (
         <loginProvider.Provider value={{login, setLogin}}>
@@ -39,7 +41,11 @@ function App() {
                             </Header>
 
                             <Body flag={flag}>
-                                    <CreateList/>
+                                <CreateList/>
+                                <div style={{display: 'flex', flexDirection: 'column', gap: '.5rem'}}>
+                                    <Calendar/>
+                                    <div style={{width: '298px', height: '205px', boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',}}> </div>
+                                </div>
                             </Body>
                         </div>
                     </div>
