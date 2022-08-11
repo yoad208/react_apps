@@ -1,18 +1,33 @@
-import React, {createContext, useState} from "react";
+import {createContext, useEffect, useState} from "react";
 import Login from "./Components/baisc/login";
 import Header from "./Components/baisc/header";
 import Navigation from "./Components/baisc/navigation";
 import Logout from "./Components/baisc/logout";
-import useLocalStorage from './Components/customHooks/useLocalStorage'
+import useLocalStorage from './Components/customHooks/useLocalStorage';
+import useAxios from "./Components/customHooks/useAxios";
+import Body from "./Components/baisc/body";
+import CurrentSpace from "./Components/operations/currentSpace";
 
 
 export const loginProvider = createContext()
+export const dataProvider = createContext()
 
 function App() {
 
 
     const [login, setLogin] = useLocalStorage('login', false)
-    const [flag, setFlag] = useState(false)
+    const [opacityBody, setOpacityBody] = useState(false)
+    const [showSpaces, setShowSpaces] = useState(false)
+    const [spaces, setSpaces] = useState([])
+    const [spaceName, setSpaceName] = useState('')
+    const {response, request} = useAxios()
+
+
+    useEffect(() => {
+        request('GET', 'http://localhost:3001')
+        console.log(response)
+        setSpaces(response)
+    }, [showSpaces])
 
     return (
         <loginProvider.Provider value={{login, setLogin}}>
@@ -20,7 +35,16 @@ function App() {
                 {!login
                     ? <Login/>
                     : <div style={{display: 'flex', minHeight: '70vh'}}>
-                        <Navigation flagOpacityBody={setFlag} opacity={flag}/>
+                        <dataProvider.Provider value={{
+                            setSpaces,
+                            spaces,
+                            setShowSpaces,
+                            opacityBody,
+                            setOpacityBody,
+                            setSpaceName
+                        }}>
+                            <Navigation/>
+                        </dataProvider.Provider>
                         <div style={{width: '85vw'}}>
                             <Header>
                                 <div style={{
@@ -33,6 +57,13 @@ function App() {
                                     <Logout/>
                                 </div>
                             </Header>
+                            <Body>
+                                {spaces.map((space, index)=> {
+                                    return spaceName === space.name
+                                        ? <CurrentSpace key={space.id} space={space}/>
+                                        : null
+                                })}
+                            </Body>
                         </div>
                     </div>
                 }

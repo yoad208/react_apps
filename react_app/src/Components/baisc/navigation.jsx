@@ -1,14 +1,20 @@
-import Logo from "./logo";
-import Logout from "./logout";
-import {useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCaretRight, faGear, faGlobe, faHome} from '@fortawesome/free-solid-svg-icons'
+import Logo from "./logo";
+import Logout from "./logout";
+import useAxios from "../customHooks/useAxios";
 import CreateWorkSpace from "../operations/createWorkSpace";
+import {dataProvider} from "../../App";
 
-export default function Navigation({flagOpacityBody, opacity}) {
+
+
+export default function Navigation() {
 
 
     const [active, setActive] = useState(false)
+    const {setSpaces, spaces, setShowSpaces, opacityBody, setOpacityBody} = useContext(dataProvider)
+
 
     const navigationStyle = {
         display: 'flex',
@@ -36,7 +42,10 @@ export default function Navigation({flagOpacityBody, opacity}) {
                     <div style={{
                         marginLeft: '6rem',
                         transform: active ? 'rotate(90deg)' : 'none'
-                    }} onClick={() => setActive(!active)}> <FontAwesomeIcon icon={faCaretRight}/></div>
+                    }} onClick={() => {
+                        setShowSpaces(true)
+                        setActive(!active)
+                    }}> <FontAwesomeIcon icon={faCaretRight}/></div>
                 </li>
                 {active ?<div style={{
                     maxHeight: '80px',
@@ -44,7 +53,7 @@ export default function Navigation({flagOpacityBody, opacity}) {
                     overflowX: 'hidden',
                     marginLeft: '1.5rem',
                     paddingRight: '.5rem'
-                }}> <CreateWorkSpace setActive={flagOpacityBody} active={opacity}/> </div>: null}
+                }}> <CreateWorkSpace setSpaces={setSpaces} spaces={spaces} setActive={setOpacityBody} active={opacityBody}/> </div>: null}
                 <li><FontAwesomeIcon icon={faGear} style={{marginBottom: '10rem'}}/> Setting</li>
                 <Logout/>
             </ul>
