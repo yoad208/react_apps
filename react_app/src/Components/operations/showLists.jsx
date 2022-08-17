@@ -18,6 +18,12 @@ function ShowLists({list, space}) {
         setNavOpen(false)
     }
 
+    // const renameList = () => {
+    //     request('EDIT', `http://localhost:3001/${space._id}`,
+    //         {...space.lists, lists: space.lists.filter(space => space._id !== list._id)})
+    //     setNavOpen(false)
+    // }
+
     return (
         <>
             <div>
@@ -57,7 +63,7 @@ function ShowLists({list, space}) {
                                     gap: '1rem',
                                     color: 'rgba(0,0,0,.5)'
                                 }}>
-                                    <li>
+                                    <li style={{cursor: 'pointer'}} >
                                         <FontAwesomeIcon style={{paddingRight: '.5rem', color: '#aaa'}}
                                                          icon={faEdit}/> Rename
                                     </li>
@@ -65,17 +71,15 @@ function ShowLists({list, space}) {
                                         <FontAwesomeIcon style={{paddingRight: '.5rem', color: '#f00'}}
                                                          icon={faTrashCan}/> Delete
                                     </li>
-                                    <li>
+                                    <li style={{cursor: 'pointer'}} >
                                         <FontAwesomeIcon style={{paddingRight: '.5rem', color: '#333'}}
                                                          icon={faEyeDropper}/> Edit color
                                     </li>
-                                    <li>
-                                        <FontAwesomeIcon onClick={() => {
-                                            setCreateTask(!createTask)
-                                            setNavOpen(false)
-                                        }}
-                                                         style={{paddingRight: '.5rem', color: '#00f'}}
-                                                         icon={faAdd}/> Add New Task
+                                    <li style={{cursor: 'pointer'}} >
+                                        <FontAwesomeIcon
+                                            onClick={() => {setCreateTask(!createTask); setNavOpen(false)}}
+                                            style={{paddingRight: '.5rem', color: '#00f'}}
+                                            icon={faAdd}/> Add New Task
                                     </li>
                                 </ul>
                             </div>
