@@ -1,12 +1,12 @@
 import {useEffect, useState} from "react";
 import { HuePicker } from 'react-color'
 
-export default function ColorPicker(props) {
+export default function ColorPicker({colorValue}) {
 
     const [color, setColor] = useState('')
 
     useEffect(() => {
-        props.colorValue(color)
+        colorValue(color)
     }, [color])
 
     return (

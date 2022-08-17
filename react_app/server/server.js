@@ -24,6 +24,28 @@ app.post('/', async (req, res, next) => {
     res.json(workSpace)
 })
 
+app.delete('/:id', async (req, res, next) => {
+    try {
+        let data = await workSpaceModel.deleteOne({_id: req.params.id})
+        res.json(data)
+    } catch (err) {
+        console.log(err)
+        res.status(400).send(err)
+    }
+})
+
+app.put('/:id', async (req, res, next) => {
+    let dataSaved = req.body
+    try {
+        let data = await workSpaceModel.updateOne({_id: req.params.id}, dataSaved)
+        console.log(data)
+        res.json(data)
+    } catch (err) {
+        console.log(err)
+        res.status(400).send(err)
+    }
+})
+
 
 app.listen(PORT, () => {
     console.log(`server running on port http://localhost:${PORT}`)

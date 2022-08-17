@@ -121,7 +121,7 @@ body {
     max-height: 100%;
     margin-top: 2rem;
     background: white;
-    /*border: 1px solid #a0a096;*/
+    z-index: 0;
     box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1em;
@@ -157,7 +157,7 @@ body {
 }
 .react-calendar__navigation {
     height: 45px;
-    background-color: rgba(24, 165, 227, 0.73);
+    background-color: rgba(5,191,218,0.67);
     padding-top: .8rem;
     margin-bottom: 1em;
     padding-left: .5em;

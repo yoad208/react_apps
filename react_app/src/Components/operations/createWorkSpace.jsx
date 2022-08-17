@@ -18,7 +18,6 @@ export default function CreateWorkSpace() {
         setDataSaved({
             id: Date.now(),
             name: name,
-            edit: false,
             lists: []
         })
         request('GET', 'http://localhost:3001')
