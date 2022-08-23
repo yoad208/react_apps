@@ -8,8 +8,8 @@ import useAxios from "./Components/customHooks/useAxios";
 import Body from "./Components/baisc/body";
 import CurrentSpace from "./Components/operations/currentSpace";
 import Calendar from "react-calendar";
-import ShowLists from "./Components/operations/showLists";
 import CreateList from "./Components/operations/createList";
+import DataChert from "./Components/custom/dataChert";
 
 export const loginProvider = createContext()
 export const dataProvider = createContext()
@@ -19,17 +19,29 @@ function App() {
 
     const [login, setLogin] = useLocalStorage('login', false)
     const [opacityBody, setOpacityBody] = useState(false)
-    const [showSpaces, setShowSpaces] = useState(false)
-    const [spaces, setSpaces] = useState([])
     const [spaceName, setSpaceName] = useState('')
     const {response, request} = useAxios()
-
+    const [spaces, setSpaces] = useState([])
 
     useEffect(() => {
-        request('GET', 'http://localhost:3001')
-        console.log(response)
-        setSpaces(response)
-    }, [showSpaces])
+    request('GET', 'http://localhost:3001')
+    hasSameObjectsData(response, spaces)
+    }, [spaces])
+
+
+    const hasSameObjectsData = (response, spaces) => {
+        let obj1Keys = Object.keys(response)
+        let obj2Keys = Object.keys(spaces)
+
+        if (obj1Keys.length === obj2Keys.length) {
+            return obj1Keys.every(key => spaces.hasOwnProperty(key)
+                && response[key].length === spaces[key].length
+            )
+                ? setSpaces(response)
+                : spaces
+        }
+        return spaces
+    }
 
     return (
         <loginProvider.Provider value={{login, setLogin}}>
@@ -40,10 +52,9 @@ function App() {
                         <dataProvider.Provider value={{
                             setSpaces,
                             spaces,
-                            setShowSpaces,
                             opacityBody,
                             setOpacityBody,
-                            setSpaceName
+                            setSpaceName,
                         }}>
                             <Navigation/>
                         </dataProvider.Provider>
@@ -51,8 +62,8 @@ function App() {
                             <Header>
                                 <div style={{
                                     float: 'right',
-                                    margin: '.8rem 6rem',
-                                    padding: '2px 5px',
+                                    margin: '0 6rem',
+                                    padding: '0 5px',
                                     cursor: 'pointer',
                                     listStyle: 'none'
                                 }}>
@@ -64,12 +75,12 @@ function App() {
                                 <div style={{
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    borderRadius: '12px',
-                                    width: '53vw',
-                                    maxWidth: '53vw',
-                                    margin: '2rem 1rem 0 1rem',
-                                    height: '37vw',
-                                    boxShadow: 'rgba(0, 0, 0, 0.35) 0 5px 15px',
+                                    borderRadius: '6px',
+                                    width: '57vw',
+                                    maxWidth: '57vw',
+                                    margin: '.8rem .4rem 0 .3rem',
+                                    height: '40vw',
+                                    boxShadow: 'rgba(0, 0, 0, 0.16) 0 1px 4px',
                                     overflow: 'auto',
                                     position: 'relative',
                                     overflowY: 'hidden',
@@ -77,10 +88,10 @@ function App() {
                                 }}>
                                     <div style={{
                                         height: '2.8rem',
-                                        width: '53vw',
+                                        width: '57vw',
                                         backgroundColor: 'rgba(5,191,218,0.67)',
                                         position: 'fixed',
-                                        borderRadius: '12px 12px 0 0',
+                                        borderRadius: '6px 6px 0 0',
                                     }}>
                                         {spaces.map(space => {
                                             return spaceName === space.name
@@ -98,12 +109,14 @@ function App() {
                                 <div>
                                     <Calendar/>
                                     <div style={{
-                                        borderRadius: '12px',
-                                        maxWidth: '25vw',
-                                        height: '15vw',
-                                        marginTop: '1.2rem',
-                                        boxShadow: 'rgba(0, 0, 0, 0.35) 0 5px 15px'
-                                    }}/>
+                                        borderRadius: '6px',
+                                        maxWidth: '23.5vw',
+                                        height: '16.7vw',
+                                        marginTop: '.5rem',
+                                        boxShadow: 'rgba(0, 0, 0, 0.16) 0 1px 4px',
+                                    }}>
+                                        <DataChert spaces={spaces}/>
+                                    </div>
                                 </div>
                             </Body>
                         </div>

@@ -6,5 +6,23 @@ export default function ShowSpacesName({spaces}) {
     const name = useRef()
     const {setSpaceName} = useContext(dataProvider)
 
-    return (<li ref={name} onClick={() => setSpaceName(name.current.innerHTML)}>{spaces.name}</li>)
+    return (
+        <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            marginTop: '.8rem',
+            paddingRight: '3.5rem',
+            width: '100%',
+        }}>
+                <span style={{
+                    cursor: 'pointer',
+                    fontFamily: 'sans-serif',
+                    fontSize: 'small',
+                    textTransform: 'capitalize',
+                    color: 'rgba(5,191,218,0.67)'
+                }}
+                      ref={name}
+                      onClick={() => setSpaceName(name.current.innerHTML)}>{spaces.name}</span>
+        </div>
+    )
 }

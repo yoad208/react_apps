@@ -1,8 +1,10 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAdd} from "@fortawesome/free-solid-svg-icons";
 import useAxios from "../customHooks/useAxios";
 import ShowLists from "./showLists";
+import Input from "../elements/input";
+import {dataProvider} from "../../App";
 
 function CreateList({space}) {
 
@@ -42,30 +44,31 @@ function CreateList({space}) {
                 right: '1%',
                 top: '90%',
             }}>
-                {active ? <form onSubmit={createList} style={{
-                    display: 'flex',
-                    gap: 2,
-                    borderRadius: 90,
-                    backgroundColor: 'rgba(5,191,218,0.67)',
-                    padding: '7px',
-                    textAlign: 'center',
-                }}>
-                    <input style={{backgroundColor: 'transparent', border: "none", outline: "none"}}
-                           autoFocus={true}
-                           placeholder="Insert list status"
-                           onChange={e => setStatus(e.target.value)} type="text"/>
-                    <FontAwesomeIcon onClick={() => setActive(!active)} icon={faAdd}/>
-                </form> : <FontAwesomeIcon style={{
-                    borderRadius: 90,
-                    backgroundColor: 'rgba(5,191,218,0.67)',
-                    width: '1rem',
-                    padding: '7px',
-                }} onClick={() => setActive(!active)} icon={faAdd}/>}
+                {active
+                    ? <form onSubmit={createList} style={{
+                        display: 'flex',
+                        gap: 2,
+                        borderRadius: 90,
+                        backgroundColor: 'rgba(5,191,218,0.67)',
+                        padding: '7px',
+                        textAlign: 'center',
+                    }}>
+                        <Input setName={setStatus}/>
+                        <FontAwesomeIcon onClick={() => setActive(!active)} icon={faAdd}/>
+                    </form>
+
+                    : <FontAwesomeIcon style={{
+                        borderRadius: 90,
+                        backgroundColor: 'rgba(5,191,218,0.67)',
+                        width: '1rem',
+                        padding: '7px',
+                    }} onClick={() => setActive(!active)} icon={faAdd}/>}
             </div>
+
             <div style={{display: 'flex', marginTop: '1rem', marginLeft: '.6rem'}}>
                 {space.lists.map(list => {
                     return (
-                        <ShowLists key={list.id} space={space} list={list}/>
+                        <ShowLists key={list._id} space={space} list={list}/>
                     )
                 })}
             </div>

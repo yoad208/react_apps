@@ -1,7 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faSave, faTrashCan} from "@fortawesome/free-solid-svg-icons";
 import useAxios from "../customHooks/useAxios";
+import Input from "../elements/input";
+import {dataProvider} from "../../App";
 
 
 export default function CurrentSpace({space, setSpaceName}) {
@@ -11,10 +13,10 @@ export default function CurrentSpace({space, setSpaceName}) {
     const [edit, setEdit] = useState(false)
     const {request} = useAxios()
 
+
     useEffect(() => {
         setNewData({...space, name: name})
-        console.log(space)
-    }, [name])
+    },[name])
 
     const deleteWorkSpace = () => {
         request('DELETE', `http://localhost:3001/${space._id}`)
@@ -35,18 +37,16 @@ export default function CurrentSpace({space, setSpaceName}) {
             alignItems: 'center',
             padding: '1rem 1rem 0 1rem',
         }}>
-            {space.name}
-            <div style={{display: 'flex', gap: '1rem'}}>
+            {!edit
+                ? <span>{space.name}</span>
+                : <form style={{display: 'flex', alignItems: 'center', gap: '1rem'}} onSubmit={editWorkSpace}>
+                    <Input setName={setName}/>
+                </form>}
+
+            <div style={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
                 {!edit
                     ? <FontAwesomeIcon onClick={() => setEdit(!edit)} icon={faEdit}/>
-                    : <div>
-                        <form onSubmit={editWorkSpace}>
-                            <input onChange={e => setName(e.target.value)} type="text"/>
-                            <button style={{background: 'none', outline: 'none', border: 'none'}}>
-                                <FontAwesomeIcon icon={faSave}/>
-                            </button>
-                        </form>
-                    </div>
+                    : <FontAwesomeIcon onClick={editWorkSpace} icon={faSave}/>
                 }
                 <FontAwesomeIcon onClick={deleteWorkSpace} icon={faTrashCan}/>
             </div>

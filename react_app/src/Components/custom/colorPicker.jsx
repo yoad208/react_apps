@@ -1,17 +1,17 @@
 import {useEffect, useState} from "react";
-import { HuePicker } from 'react-color'
+import { ChromePicker } from 'react-color'
 
 export default function ColorPicker({colorValue}) {
 
     const [color, setColor] = useState('')
 
     useEffect(() => {
-        colorValue(color)
+        colorValue(color.hex)
     }, [color])
 
     return (
-        <div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'transparent'}}>
-            <HuePicker
+        <div style={{display: 'flex', justifyContent: 'center'}}>
+            <ChromePicker
                 width={'100%'}
                 color={color}
                 onChange={updateColor => setColor(updateColor)}

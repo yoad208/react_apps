@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faX} from "@fortawesome/free-solid-svg-icons";
 import useAxios from "../customHooks/useAxios";
-import data from "bootstrap/js/src/dom/data";
+import Input from "../elements/input";
 
-export default function CreateTask({setCreateTask, list, space, listStatus}) {
+export default function CreateTask({setCreateTask, space, listStatus}) {
 
     const [taskName, setTaskName]= useState('')
     const newLists = space.lists.slice()
@@ -43,19 +41,7 @@ export default function CreateTask({setCreateTask, list, space, listStatus}) {
                   maxWidth: '12rem',
                   padding: '.5rem',
               }}>
-            <div style={{
-                display: "flex",
-                alignItems: 'start',
-                gap: '.3rem'
-            }}>
-                <FontAwesomeIcon style={{width: "8px"}} icon={faX} onClick={() => taskName.current.value = ''}/>
-                <input style={{border: 'none', caretColor: 'rgba(5,191,218,0.67)', outline: 'none', height: '1rem'}}
-                       placeholder="Add task name"
-                       type="text"
-                       aria-multiline="true"
-                       autoFocus={true}
-                       onChange={e => setTaskName(e.target.value)}/>
-            </div>
+            <Input setName={setTaskName}/>
             <button
                 style={{
                     marginTop: '1rem',

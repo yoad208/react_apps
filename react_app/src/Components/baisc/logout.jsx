@@ -7,7 +7,7 @@ export default function Logout() {
 
     const {setLogin} = useContext(loginProvider)
 
-    return <li onClick={() => {
+    return <li style={{marginTop: '1rem'}} onClick={() => {
         setLogin(false)
     }}><FontAwesomeIcon icon={faArrowRightFromBracket}/> Log-out</li>;
 }

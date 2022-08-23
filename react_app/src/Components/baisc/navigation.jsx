@@ -3,7 +3,6 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCaretRight, faGear, faGlobe, faHome} from '@fortawesome/free-solid-svg-icons'
 import Logo from "./logo";
 import Logout from "./logout";
-import useAxios from "../customHooks/useAxios";
 import CreateWorkSpace from "../operations/createWorkSpace";
 import {dataProvider} from "../../App";
 
@@ -13,7 +12,8 @@ export default function Navigation() {
 
 
     const [active, setActive] = useState(false)
-    const {setSpaces, spaces, setShowSpaces, opacityBody, setOpacityBody} = useContext(dataProvider)
+    const {setSpaces, spaces, opacityBody, setOpacityBody} = useContext(dataProvider)
+
 
 
     const navigationStyle = {
@@ -24,26 +24,25 @@ export default function Navigation() {
         paddingRight: '2rem',
         flexDirection: 'column',
         gap: '1.5rem',
-        maxWidth: '15vw',
+        width: '13vw',
+        maxWidth: '13vw',
         minHeight: '79.9vh',
     }
 
     return (
         <div className="navigation" style={{
             navigationStyle,
-            borderRight: '1px solid rgba(0,0,0,.2)',
             backgroundColor: '#333',
             color: '#aaa'
         }}>
             <Logo/>
             <ul style={navigationStyle}>
-                <li><FontAwesomeIcon icon={faHome}/> Home</li>
-                <li><FontAwesomeIcon icon={faGlobe}/> spaces
+                <li ><FontAwesomeIcon icon={faHome}/> Home</li>
+                <li ><FontAwesomeIcon icon={faGlobe}/> spaces
                     <div style={{
-                        marginLeft: '6rem',
+                        marginLeft: '5.5rem',
                         transform: active ? 'rotate(90deg)' : 'none'
                     }} onClick={() => {
-                        setShowSpaces(true)
                         setActive(!active)
                     }}> <FontAwesomeIcon icon={faCaretRight}/></div>
                 </li>
@@ -51,10 +50,9 @@ export default function Navigation() {
                     maxHeight: '80px',
                     overflowY: '-moz-hidden-unscrollable',
                     overflowX: 'hidden',
-                    marginLeft: '1.5rem',
                     paddingRight: '.5rem'
                 }}> <CreateWorkSpace setSpaces={setSpaces} spaces={spaces} setActive={setOpacityBody} active={opacityBody}/> </div>: null}
-                <li><FontAwesomeIcon icon={faGear} style={{marginBottom: '10rem'}}/> Setting</li>
+                <li ><FontAwesomeIcon icon={faGear}/> Setting</li>
                 <Logout/>
             </ul>
         </div>

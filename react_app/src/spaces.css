@@ -1,11 +1,18 @@
 .create-workSpace .newSpace-btn {
-    width: 15vw;
-    border: none;
-    font-size: large;
-    text-transform: uppercase;
+    width: 100%;
+    font-size: medium;
+    text-transform: capitalize;
     outline: none;
     color: #aaa;
-    background-color: rgba(0,0,0,.1);
+    background-color: transparent;
+    border: 1px solid #aaaaaa;
+    border-radius: 6px;
+    transition: .5s;
+}
+
+.create-workSpace .newSpace-btn:hover {
+    color: #333333;
+    background-color: rgba(5,191,218,0.67);
 }
 
 .create-workSpace .workSpaceStyle{
