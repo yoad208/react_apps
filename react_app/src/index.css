@@ -87,7 +87,7 @@ body {
     background: #a6a5a5;
 }
 
-.navigation ul li {
+.navigation ul li{
     list-style: none;
     font-size: medium;
     padding: 6px 6px;
@@ -99,7 +99,14 @@ body {
     gap: 12px;
 }
 
-.navigation ul li:hover {
+.navigation .link {
+    color: #aaa;
+    display: flex;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.navigation ul li:hover{
     transform: translate(2px, 4px);
 }
 

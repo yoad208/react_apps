@@ -21,7 +21,7 @@ export default function CreateWorkSpace() {
             lists: []
         })
         request('GET', 'http://localhost:3001')
-        setSpaces(response)
+        return setSpaces(response)
     }, [name, response])
 
 
@@ -36,7 +36,8 @@ export default function CreateWorkSpace() {
 
     return (
         <div className="create-workSpace" style={{maxWidth: '100%'}}>
-            <button className="newSpace-btn" onClick={() => setOpacityBody(opacityBody => !opacityBody)}>New Space</button>
+            <button className="newSpace-btn" onClick={() => setOpacityBody(opacityBody => !opacityBody)}>New Space
+            </button>
             {opacityBody
                 ? <div className="workSpaceStyle">
                     <div className="create-workSpace-header">
@@ -44,7 +45,8 @@ export default function CreateWorkSpace() {
                         <img width='150px' src={workSpaceLogo} alt="logo"/>
                     </div>
                     <form onSubmit={createWorkSpace}>
-                        <input autoFocus={true} onChange={e => setName(e.target.value)} type="text" placeholder="Insert workSpace name"/>
+                        <input autoFocus={true} onChange={e => setName(e.target.value)} type="text"
+                               placeholder="Insert workSpace name"/>
                         <button type="submit">click</button>
                     </form>
 
@@ -52,9 +54,9 @@ export default function CreateWorkSpace() {
                 : error && <span className="workSpaceStyle"
                                  style={{padding: '25px 25px 0 25px', maxHeight: '50px', textAlign: 'center'}}>There is an error</span>}
             <div style={{padding: '0 2.5rem 0 .2rem'}}>
-            {spaces.map(space => {
-                return <ShowSpacesName key={space.id} spaces={space} />
-            })}
+                {spaces.map(space => {
+                    return <ShowSpacesName key={space.id} spaces={space}/>
+                })}
             </div>
         </div>
     );

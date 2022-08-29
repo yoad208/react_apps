@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEdit, faTrashCan} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faEdit, faTrashCan} from "@fortawesome/free-solid-svg-icons";
 import useAxios from "../customHooks/useAxios";
 import Input from "../elements/input";
 
@@ -10,7 +10,12 @@ export default function ShowTasks({space, task, list}) {
     const newLists = space.lists.slice()
     const [newTaskName, setNewTaskName] = useState('')
     const [editTask, setEditTask] = useState(false)
+    const [check, setCheck] = useState(false)
     const {request} = useAxios()
+
+    // useEffect(() => {
+    //     completeTask()
+    // },[])
 
     const deleteTask = () => {
         for (let i = 0; i < space.lists.length; i++) {
@@ -20,6 +25,30 @@ export default function ShowTasks({space, task, list}) {
                     tasks: newLists[i].tasks.filter(currentTask => currentTask._id !== task._id)
                 }
             }
+        }
+        request('EDIT', `http://localhost:3001/${space._id}`,
+            {
+                ...space.lists, lists: newLists
+            })
+    }
+    const completeTask = () => {
+        let i = 0;
+        let j = 0;
+        while (i < space.lists.length) {
+            if (newLists[i]._id === list._id) {
+                newTasks = newLists[i].tasks.slice()
+                console.log(newTasks)
+                break
+            }
+            i++
+        }
+        while (j < newTasks.length) {
+            if (newTasks[j]._id === task._id) {
+                newTasks[j] = {...newTasks[j], complete: check}
+                newLists[i] = {...newLists[i], tasks: newTasks}
+                break
+            }
+            j++
         }
         request('EDIT', `http://localhost:3001/${space._id}`,
             {
@@ -41,7 +70,7 @@ export default function ShowTasks({space, task, list}) {
             }
             while (j < newTasks.length) {
                 if (newTasks[j]._id === task._id) {
-                    newTasks[j] = {...newTasks[j], taskName: newTaskName}
+                    newTasks[j] = {...newTasks[j], taskName: newTaskName, complete: check}
                     newLists[i] = {...newLists[i], tasks: newTasks}
                     break
                 }
@@ -60,10 +89,10 @@ export default function ShowTasks({space, task, list}) {
             display: 'flex',
             flexDirection: 'column',
             marginTop: '.5rem',
-            backgroundColor: '#fff',
+            backgroundColor: task.complete ? '#d6fad6' : '#fad3d3',
             boxShadow: 'rgba(0, 0, 0, 0.16) 0 1px 4px',
             maxWidth: 'calc(600px / 3)',
-            margin: '0 0 .5rem .1rem',
+            margin: '0 0 .5rem 0',
             padding: '10px 5px 0 5px',
             borderRadius: '3px',
             wordBreak: 'break-word',
@@ -71,7 +100,10 @@ export default function ShowTasks({space, task, list}) {
         }}>
             <div
                 style={{display: 'flex', flexDirection: 'column', gap: '.8rem'}}>
-                <span style={{fontSize: 'small', color: '#aaa',}}>{space.name}</span>
+                <div style={{display: 'flex', justifyContent: 'space-between', padding: '0 .2rem'}}>
+                    <span style={{fontSize: 'small', color: '#aaa',}}>{space.name}</span>
+                    <span>{task.date}</span>
+                </div>
                 {!editTask
                     ? <span>{task.taskName}</span>
                     : <form onSubmit={renameTask}><Input setName={setNewTaskName}/></form>}
@@ -79,12 +111,19 @@ export default function ShowTasks({space, task, list}) {
 
             <div style={{
                 display: 'flex',
-                gap: '.5rem',
+                alignItems: 'center',
+                justifyContent: 'space-between',
                 margin: '1.5rem 0 .5rem 0',
-                justifyContent: 'right'
             }}>
-                <FontAwesomeIcon onClick={() => setEditTask(!editTask)} icon={faEdit}/>
-                <FontAwesomeIcon onClick={deleteTask} icon={faTrashCan}/>
+                <FontAwesomeIcon style={{color: task.complete ? '#01a401' : '#f00', cursor: 'pointer'}}
+                                 onClick={() => {
+                                     setCheck(!check);
+                                     completeTask()
+                                 }} icon={faCheck}/>
+                <div style={{display: 'flex', justifyContent: 'right', gap: '.5rem'}}>
+                    <FontAwesomeIcon onClick={() => setEditTask(!editTask)} icon={faEdit}/>
+                    <FontAwesomeIcon onClick={deleteTask} icon={faTrashCan}/>
+                </div>
             </div>
         </div>
     );

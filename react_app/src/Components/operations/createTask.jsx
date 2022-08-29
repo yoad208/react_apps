@@ -11,7 +11,7 @@ export default function CreateTask({setCreateTask, space, listStatus}) {
 
     useEffect(() => {
         setTask({
-            date: Date.now(),
+            date: new Date(Date.now()).toLocaleDateString(),
             taskName: taskName,
             complete: false
         })

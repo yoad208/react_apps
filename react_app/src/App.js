@@ -6,26 +6,27 @@ import Logout from "./Components/baisc/logout";
 import useLocalStorage from './Components/customHooks/useLocalStorage';
 import useAxios from "./Components/customHooks/useAxios";
 import Body from "./Components/baisc/body";
-import CurrentSpace from "./Components/operations/currentSpace";
-import Calendar from "react-calendar";
-import CreateList from "./Components/operations/createList";
-import DataChert from "./Components/custom/dataChert";
+import BodyData from "./Components/baisc/bodyData";
+import Dashboard from "./Components/baisc/dashboard";
+import {Route, Routes} from "react-router-dom";
+
 
 export const loginProvider = createContext()
 export const dataProvider = createContext()
 
 function App() {
 
-
     const [login, setLogin] = useLocalStorage('login', false)
     const [opacityBody, setOpacityBody] = useState(false)
     const [spaceName, setSpaceName] = useState('')
     const {response, request} = useAxios()
-    const [spaces, setSpaces] = useState([])
+    const [spaces, setSpaces] = useState(response)
+    const [url, setUrl] = useState(null)
+
 
     useEffect(() => {
-    request('GET', 'http://localhost:3001')
-    hasSameObjectsData(response, spaces)
+        request('GET', 'http://localhost:3001')
+        hasSameObjectsData(response, spaces)
     }, [spaces])
 
 
@@ -55,6 +56,8 @@ function App() {
                             opacityBody,
                             setOpacityBody,
                             setSpaceName,
+                            setUrl,
+                            url
                         }}>
                             <Navigation/>
                         </dataProvider.Provider>
@@ -71,53 +74,15 @@ function App() {
                                 </div>
                             </Header>
                             <Body opacityBody={opacityBody}>
-
-                                <div style={{
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    borderRadius: '6px',
-                                    width: '57vw',
-                                    maxWidth: '57vw',
-                                    margin: '.8rem .4rem 0 .3rem',
-                                    height: '40vw',
-                                    boxShadow: 'rgba(0, 0, 0, 0.16) 0 1px 4px',
-                                    overflow: 'auto',
-                                    position: 'relative',
-                                    overflowY: 'hidden',
-                                    overflowX: "-moz-hidden-unscrollable"
-                                }}>
-                                    <div style={{
-                                        height: '2.8rem',
-                                        width: '57vw',
-                                        backgroundColor: 'rgba(5,191,218,0.67)',
-                                        position: 'fixed',
-                                        borderRadius: '6px 6px 0 0',
-                                    }}>
-                                        {spaces.map(space => {
-                                            return spaceName === space.name
-                                                ?
-                                                <CurrentSpace key={space.id} space={space} setSpaceName={setSpaceName}/>
-                                                : null
-                                        })}
-                                    </div>
-                                    {spaces.map(space => {
-                                        return spaceName === space.name
-                                            ? <CreateList key={space.id} space={space}/>
-                                            : null
-                                    })}
-                                </div>
-                                <div>
-                                    <Calendar/>
-                                    <div style={{
-                                        borderRadius: '6px',
-                                        maxWidth: '23.5vw',
-                                        height: '16.7vw',
-                                        marginTop: '.5rem',
-                                        boxShadow: 'rgba(0, 0, 0, 0.16) 0 1px 4px',
-                                    }}>
-                                        <DataChert spaces={spaces}/>
-                                    </div>
-                                </div>
+                                <Routes>
+                                    <Route path="/"
+                                           element={<BodyData
+                                               spaces={spaces}
+                                               spaceName={spaceName}
+                                               setSpaceName={setSpaceName}
+                                           />}/>
+                                    <Route path="/Dashboard" element={<Dashboard spaces={spaces}/>}/>
+                                </Routes>
                             </Body>
                         </div>
                     </div>
