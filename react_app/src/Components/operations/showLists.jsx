@@ -43,7 +43,7 @@ function ShowLists({list, space}) {
                 marginRight: '.8rem',
                 display: 'flex',
                 justifyContent: 'space-between',
-                width: 'calc(600px / 3)',
+                width: 'calc(600px / 2.2)',
                 borderTop: colorValue !== '#fff' ? `3px solid ${colorValue}` : '3px solid silver',
                 height: '2rem',
                 maxHeight: '2rem',
@@ -81,9 +81,9 @@ function ShowLists({list, space}) {
                 </div>
             </div>
             <div style={{
-                maxHeight: '59vh',
+                maxHeight: '65vh',
                 marginTop: '1rem',
-                width: 'calc(600px / 2.8)',
+                width: 'calc(600px / 2.1)',
                 overflow: 'auto',
                 overflowX: 'hidden',
                 overflowY: '-moz-hidden-unscrollable'

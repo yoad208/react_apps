@@ -12,7 +12,7 @@ function BodyData({spaces, spaceName, setSpaceName}) {
                 width: '81vw',
                 maxWidth: '81vw',
                 margin: '.5rem .4rem 0 .3rem',
-                height: '40vw',
+                height: '44vw',
                 boxShadow: 'rgba(0, 0, 0, 0.16) 0 1px 4px',
                 overflow: 'auto',
                 position: 'relative',

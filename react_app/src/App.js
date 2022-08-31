@@ -62,17 +62,6 @@ function App() {
                             <Navigation/>
                         </dataProvider.Provider>
                         <div style={{width: '85vw'}}>
-                            <Header>
-                                <div style={{
-                                    float: 'right',
-                                    margin: '0 6rem',
-                                    padding: '0 5px',
-                                    cursor: 'pointer',
-                                    listStyle: 'none'
-                                }}>
-                                    <Logout/>
-                                </div>
-                            </Header>
                             <Body opacityBody={opacityBody}>
                                 <Routes>
                                     <Route path="/"
