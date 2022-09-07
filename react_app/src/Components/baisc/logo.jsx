@@ -1,14 +1,13 @@
 import icon from "../../images/icon.png";
+import React from "react";
 
-export default function Logo(props) {
+export default function Logo({closeNav}) {
 
     const logoStyle = {
-        display: 'flex',
-        margin: '0 0 3rem 0',
-        padding: '1rem 0',
-        alignItems: 'end',
-        gap: '.2rem',
-        backgroundColor: 'rgba(0,0,0,.3)'
+        marginBottom: '.3rem',
+        paddingBottom: '.5rem',
+        borderBottom: '1px solid #aaa',
+        padding: '6px'
     }
 
     return (
@@ -16,11 +15,10 @@ export default function Logo(props) {
             <img
                 style={{
                     maxWidth: '30px',
-                    margin: '1rem 0 1rem 1rem'
+                    margin: '.5rem 0 0 .5rem'
                 }}
                 src={icon}
                 alt="logo"/>
-            <span style={{marginBottom: '1rem'}}>Task management</span>
         </div>
     );
 }

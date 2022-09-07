@@ -13,6 +13,8 @@ export default function ShowTasks({space, task, list}) {
     const [check, setCheck] = useState(null)
     const {request} = useAxios()
 
+
+
     const deleteTask = () => {
         for (let i = 0; i < space.lists.length; i++) {
             if (newLists[i]._id === list._id) {

@@ -1,63 +1,77 @@
 import React, {useContext, useEffect, useState} from "react";
-import '../../spaces.css'
-import workSpaceLogo from "../../images/workSpaceLogo.png";
-import ShowSpacesName from "./showSpacesName";
+import '../../styleSheets/spaces.css';
 import useAxios from "../customHooks/useAxios";
 import {dataProvider} from "../../App";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faS} from "@fortawesome/free-solid-svg-icons";
 
 
-export default function CreateWorkSpace() {
+export default function CreateWorkSpace({flag, setFlag}) {
 
-    const {setSpaces, spaces, opacityBody, setOpacityBody} = useContext(dataProvider)
+    const {response, request} = useAxios()
     const [name, setName] = useState('')
+    const [nameExist, setNameExist] = useState('')
+    const {spaces, setSpaces} = useContext(dataProvider)
     const [dataSaved, setDataSaved] = useState({})
-    const {error, response, request} = useAxios()
-
 
     useEffect(() => {
-        setDataSaved({
-            id: Date.now(),
-            name: name,
-            lists: []
+        spaces.forEach(space => {
+            if (name === space.name) {
+                setNameExist(name)
+            }
         })
+            setDataSaved({
+                id: Date.now(),
+                name: name,
+                lists: []
+            })
         request('GET', 'http://localhost:3001')
-        return setSpaces(response)
+        hasSameObjectsData(spaces, response)
     }, [name, response])
+
+    const hasSameObjectsData = (response, spaces) => {
+        let obj1Keys = Object.keys(response)
+        let obj2Keys = Object.keys(spaces)
+
+        if (obj1Keys.length === obj2Keys.length) {
+            return obj1Keys.every(key => spaces.hasOwnProperty(key)
+                && response[key].length === spaces[key].length
+            )
+                ? setSpaces(response)
+                : spaces
+        }
+        return spaces
+    }
 
 
     const createWorkSpace = (e) => {
         e.preventDefault()
-        if (name) {
+        e.target.value = ''
+        if (name && name !== nameExist) {
             request('POST', 'http://localhost:3001', dataSaved)
+            setSpaces(response)
         }
         setName('')
-        setOpacityBody(opacityBody => !opacityBody)
+        setFlag(!flag)
     }
 
-    return (
-        <div className="create-workSpace" style={{maxWidth: '100%'}}>
-            <button className="newSpace-btn" onClick={() => setOpacityBody(opacityBody => !opacityBody)}>New Space
-            </button>
-            {opacityBody
-                ? <div className="workSpaceStyle">
-                    <div className="create-workSpace-header">
-                        <span>create work space</span>
-                        <img width='150px' src={workSpaceLogo} alt="logo"/>
-                    </div>
-                    <form onSubmit={createWorkSpace}>
-                        <input autoFocus={true} onChange={e => setName(e.target.value)} type="text"
-                               placeholder="Insert workSpace name"/>
-                        <button type="submit">click</button>
-                    </form>
 
-                </div>
-                : error && <span className="workSpaceStyle"
-                                 style={{padding: '25px 25px 0 25px', maxHeight: '50px', textAlign: 'center'}}>There is an error</span>}
-            <div style={{padding: '0 2.5rem 0 .2rem'}}>
-                {spaces.map(space => {
-                    return <ShowSpacesName key={space.id} spaces={space}/>
-                })}
-            </div>
-        </div>
-    );
+    return <form
+        style={{display: 'flex', alignItems: 'center', gap: '.1rem', margin: '.5rem 0 0 -1.8rem', width: '60%'}}
+        onSubmit={createWorkSpace}>
+        <FontAwesomeIcon style={{color: 'rgba(5,191,218,0.67)', fontSize: '10px'}} className='icon' icon={faS}/>
+        <input style={{
+            backgroundColor: 'transparent',
+            outline: 'none',
+            border: 'none',
+            borderBottom: '1px solid #aaa',
+            width: '100%',
+            padding: '3px',
+            caretColor: '#aaa',
+            color: '#aaa'
+        }} autoFocus={true}
+               onChange={e => setName(e.target.value)}
+               type="text"
+               placeholder="new workSpace"/>
+    </form>
 }

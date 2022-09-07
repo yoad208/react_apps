@@ -1,9 +1,8 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faSave, faTrashCan} from "@fortawesome/free-solid-svg-icons";
 import useAxios from "../customHooks/useAxios";
 import Input from "../elements/input";
-import {dataProvider} from "../../App";
 
 
 export default function CurrentSpace({space, setSpaceName}) {

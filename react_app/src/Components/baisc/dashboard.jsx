@@ -1,8 +1,9 @@
 import React from 'react';
-import Calendar from "react-calendar";
+import Calendar from "../custom/calender";
 import DoughnutChart from "../custom/DoughnutChart";
 import 'chart.js/auto'
-import '../../dashboard.css'
+import '../../styleSheets/dashboard.css'
+import '../../styleSheets/react-calander.css'
 import BarChart from "../custom/BarChart";
 import ThisWeekTasks from "../operations/thisWeekTasks";
 

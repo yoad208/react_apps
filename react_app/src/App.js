@@ -21,7 +21,6 @@ function App() {
     const [spaceName, setSpaceName] = useState('')
     const {response, request} = useAxios()
     const [spaces, setSpaces] = useState(response)
-    const [url, setUrl] = useState(null)
 
 
     useEffect(() => {
@@ -46,37 +45,35 @@ function App() {
 
     return (
         <loginProvider.Provider value={{login, setLogin}}>
-            <div className="App">
-                {!login
-                    ? <Login/>
-                    : <div style={{display: 'flex', minHeight: '70vh'}}>
-                        <dataProvider.Provider value={{
-                            setSpaces,
-                            spaces,
-                            opacityBody,
-                            setOpacityBody,
-                            setSpaceName,
-                            setUrl,
-                            url
-                        }}>
+            <dataProvider.Provider value={{
+                setSpaces,
+                spaces,
+                opacityBody,
+                setOpacityBody,
+                setSpaceName,
+            }}>
+                <div className="App">
+                    {!login
+                        ? <Login/>
+                        : <div style={{display: 'flex', minHeight: '70vh'}}>
                             <Navigation/>
-                        </dataProvider.Provider>
-                        <div style={{width: '85vw'}}>
-                            <Body opacityBody={opacityBody}>
-                                <Routes>
-                                    <Route path="/"
-                                           element={<BodyData
-                                               spaces={spaces}
-                                               spaceName={spaceName}
-                                               setSpaceName={setSpaceName}
-                                           />}/>
-                                    <Route path="/Dashboard" element={<Dashboard spaces={spaces}/>}/>
-                                </Routes>
-                            </Body>
+                            <div style={{width: '85vw'}}>
+                                <Body opacityBody={opacityBody}>
+                                    <Routes>
+                                        <Route path="/"
+                                               element={<BodyData
+                                                   spaces={spaces}
+                                                   spaceName={spaceName}
+                                                   setSpaceName={setSpaceName}
+                                               />}/>
+                                        <Route path="/Dashboard" element={<Dashboard spaces={spaces}/>}/>
+                                    </Routes>
+                                </Body>
+                            </div>
                         </div>
-                    </div>
-                }
-            </div>
+                    }
+                </div>
+            </dataProvider.Provider>
         </loginProvider.Provider>
 
     )

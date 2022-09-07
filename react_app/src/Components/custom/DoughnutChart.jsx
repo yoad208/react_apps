@@ -31,9 +31,10 @@ export default function DataChart({spaces}) {
     return (
         <div style={{
             borderRadius: '6px',
-            width: '48%',
-            height: '290px',
-            margin: '.9rem 2rem 0 0',
+            width: '100%',
+            maxWidth: '48%',
+            maxHeight: '48%',
+            marginTop: '.2rem',
             boxShadow: 'rgba(0, 0, 0, 0.16) 0 1px 4px',
         }}>
             <Doughnut data={{

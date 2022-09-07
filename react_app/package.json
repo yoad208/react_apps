@@ -2,6 +2,12 @@
   "name": "react_app",
   "version": "0.1.0",
   "private": true,
+  "devDependencies": {
+    "concurrently": "^7.3.0",
+    "electron": "^20.1.0",
+    "electron-builder": "^23.3.3",
+    "wait-on": "^6.0.1"
+  },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
@@ -14,6 +20,7 @@
     "chart.js": "^3.9.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "express": "^4.18.1",
     "mongoose": "^6.5.1",
     "nodemon": "^2.0.19",
@@ -27,11 +34,30 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
+  "main": "build/electron.js",
   "scripts": {
     "start": "react-scripts start | nodemon server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron": "wait-on http://localhost:3000 http://localhost:3001 && electron .",
+    "dev-start": "concurrently \"cross-env BROWSER=none npm start\" \"npm:electron",
+    "builder": "electron-builder"
+  },
+  "build": {
+    "appId": "react_app",
+    "productName": "Task-Management",
+    "win": {
+      "target": [
+        "nsis"
+      ],
+    "icon": "build/favicon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "uninstallDisplayName": "Task-Management-uninstaller",
+      "allowToChangeInstallationDirectory": true
+    }
   },
   "eslintConfig": {
     "extends": [

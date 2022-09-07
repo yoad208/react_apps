@@ -1,10 +1,9 @@
-import React, {useContext, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAdd} from "@fortawesome/free-solid-svg-icons";
 import useAxios from "../customHooks/useAxios";
 import ShowLists from "./showLists";
 import Input from "../elements/input";
-import {dataProvider} from "../../App";
 
 function CreateList({space}) {
 
@@ -12,7 +11,6 @@ function CreateList({space}) {
     const [list, setList] = useState({})
     const [active, setActive] = useState(false)
     const {request} = useAxios()
-
 
     useEffect(() => {
         setList({
@@ -41,7 +39,7 @@ function CreateList({space}) {
                 display: 'flex',
                 gap: 2,
                 position: 'absolute',
-                right: '1%',
+                right: '3%',
                 top: '90%',
             }}>
                 {active

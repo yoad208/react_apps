@@ -5,35 +5,15 @@ import CreateList from "../operations/createList";
 function BodyData({spaces, spaceName, setSpaceName}) {
     return (
         <>
-            <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                borderRadius: '6px',
-                width: '81vw',
-                maxWidth: '81vw',
-                margin: '.5rem .4rem 0 .3rem',
-                height: '44vw',
-                boxShadow: 'rgba(0, 0, 0, 0.16) 0 1px 4px',
-                overflow: 'auto',
-                position: 'relative',
-                overflowY: 'hidden',
-                overflowX: "-moz-hidden-unscrollable"
-            }}>
-                <div style={{
-                    height: '2.8rem',
-                    width: '81vw',
-                    backgroundColor: 'rgba(5,191,218,0.67)',
-                    position: 'fixed',
-                    borderRadius: '6px 6px 0 0',
-                }}>
+            <div className='showCurrentSpace'>
+                <div className='currentSpaceHeader'>
                     {!spaceName
-                        ? <div style={{display: 'flex', flexDirection: "column", margin: '5rem 18rem', width: '100%'}}>
-                            <img width='40%'
+                        ? <>
+                            <img style={{display: 'flex', flexDirection: "column", margin: '8rem 30%', width: '50%'}}
                                src="https://app-cdn.clickup.com/sanbath_chill.8dba001986c14eaa.png"
                                alt="background"
                             />
-                            <span style={{margin: '3rem 7rem', fontWeight: 'bold'}}>connect to Work-Space</span>
-                        </div>
+                        </>
                         : null}
                     {spaces.map(space => {
                         return spaceName === space.name

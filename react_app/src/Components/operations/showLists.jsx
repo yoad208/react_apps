@@ -20,7 +20,6 @@ function ShowLists({list, space}) {
     const [colorValue, setColorValue] = useState('#fff')
     const {request} = useAxios()
 
-
     const renameList = (e) => {
         e.preventDefault()
         for (let i = 0; i < space.lists.length; i++) {
