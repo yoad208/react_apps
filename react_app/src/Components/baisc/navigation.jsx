@@ -63,9 +63,6 @@ export default function Navigation() {
                 {flag
                     ? <CreateWorkSpace flag={flag} setFlag={setFlag}/>
                     : null}
-                <li><FontAwesomeIcon className='icon' icon={faGear}/>
-                    <span >Setting</span>
-                </li>
                 <Logout/>
             </ul>
         </div>
